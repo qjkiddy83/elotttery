@@ -1,0 +1,48 @@
+*{
+	padding:0;
+	margin:0;
+	box-sizing: border-box;
+}
+body{
+	/*overflow: hidden;*/
+    background: url(./assets/images/bg_1hdpi.png) no-repeat #1d2988;
+    background-size:1080px auto;
+}
+a{
+	text-decoration: none;
+}
+li{
+	list-style: none;
+}
+.btn-cont{
+	line-height: 96px;
+	color: #ea5514;
+	font-size: 48px;
+	display: block;
+	margin: 0 auto;
+	text-align: center;
+}
+.btn{
+	display: inline-block;
+	background: #f8b62d;
+	padding: 0 40px;
+	border-radius: 10px;
+}
+header{
+	position:relative;
+	background:url('./assets/images/bannerhdpi.png') no-repeat;
+	height:144px;
+	overflow: hidden;
+	img{
+		position: absolute;
+		left: 50px;
+		top: 24px;
+		width:96px;
+	}
+	h1{
+		font-size:54px;
+		line-height:144px;
+		color:#fff;
+		text-align: center;
+	}
+}
