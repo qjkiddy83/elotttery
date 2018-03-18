@@ -56,10 +56,16 @@
         <span>￡E {{all*2}}.00</span>
       </a>
     </section>
+    <login ref="login"></login>
+    <register ref="register"></register>
   </div>
 </template>
 
 <script>
+
+import Login from './mixins/Login';
+import Register from './mixins/Register';
+
 function factorial(n){
     return n > 1 ? n * factorial(n-1) : 1;
 }
@@ -88,6 +94,10 @@ export default {
       curBet:0,
       anthor_show : false
     }
+  },
+  components: {
+    login: Login,
+    register:Register
   },
   methods:{
     selectball:function(e){
@@ -171,6 +181,8 @@ export default {
   },
   mounted:function(){
     this.curBet = this.bets.length-1;
+    // this.$refs.login.showLayer();
+    this.$refs.register.showLayer();
   }
 }
 </script>
