@@ -1,0 +1,66 @@
+.card{
+	background-color: rgb(248,182,45);
+	padding: 50px;
+	h3{
+		font-size: 72px;
+		color: #fff;
+		margin-bottom: 145px;
+		font-weight: normal;
+	}
+	strong{
+		display: block;
+		text-align: right;
+		font-size: 156px;
+		color: rgb(234,85,20);
+		font-weight: normal;
+		i{
+			font-size: 56px;
+			font-style: normal;
+		}
+	}
+}
+.list{
+	padding: 0 36px;
+	ul{
+		margin-top: 56px;
+		li{
+			height: 144px;
+			line-height: 144px;
+			border-bottom: 1px solid #fff;
+			a{
+				font-size: 48px;
+				color: #fff;
+				display: block;
+				font-weight: lighter;
+				&:before{
+					content:'';
+					vertical-align: middle;
+					float: left;
+					margin-top: 22px;
+					width: 97px;
+					height: 97px;
+					margin-right: 20px;
+				}
+				&.mn-deposit:before{
+					background: url(../assets/images/deposit_iconhdpi.png) no-repeat;
+				}
+				&.mn-withdraw:before{
+					background: url(../assets/images/withdraw_iconhdpi.png) no-repeat;
+				}
+				&.mn-transactions:before{
+					background: url(../assets/images/transactions_iconhdpi.png) no-repeat;
+				}
+				&:after{
+					content:'';
+					vertical-align: middle;
+					float: right;
+					margin-top: 22px;
+					width: 97px;
+					height: 97px;
+					margin-right: 20px;
+					background: url(../assets/images/arrow-r.png) no-repeat;
+				}
+			}
+		}
+	}
+}

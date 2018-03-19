@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <header>
-      <img src="../assets/images/profile_btnhdpi.png">
+      <img src="../assets/images/profile_btnhdpi.png" @click="showMenu">
       <h1>Lottery <em>Double Color Balls</em></h1>
     </header>
     <section class="notice">
@@ -58,6 +58,7 @@
     </section>
     <login ref="login"></login>
     <register ref="register"></register>
+    <sidemenu ref="sidemenu"></sidemenu>
   </div>
 </template>
 
@@ -65,6 +66,7 @@
 
 import Login from './mixins/Login';
 import Register from './mixins/Register';
+import SideMenu from './mixins/SideMenu';
 
 function factorial(n){
     return n > 1 ? n * factorial(n-1) : 1;
@@ -97,7 +99,8 @@ export default {
   },
   components: {
     login: Login,
-    register:Register
+    register: Register,
+    sidemenu: SideMenu
   },
   methods:{
     selectball:function(e){
@@ -162,6 +165,9 @@ export default {
     },
     submit:function(){
       this.$router.push('checkbets')
+    },
+    showMenu:function(){
+      this.$refs.sidemenu.showMenu();
     }
   },
   computed:{
@@ -182,7 +188,7 @@ export default {
   mounted:function(){
     this.curBet = this.bets.length-1;
     // this.$refs.login.showLayer();
-    this.$refs.register.showLayer();
+    // this.$refs.register.showLayer();
   }
 }
 </script>

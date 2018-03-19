@@ -1,6 +1,6 @@
 <template>
   <div id="app" :style="'height:'+wh+'px;'">
-    <router-view transition="expand"/>
+    <router-view/>
     <!-- <div class="logger">{{width}}----{{height}}----{{wh}}</div> -->
   </div>
 </template>
@@ -30,16 +30,6 @@ export default {
     left:0;
     font-size:50px;
     color:#fff;
-  }
-  .expand-transition {
-    transition: all .3s ease;
-    overflow: hidden;
-  }
-
-  .expand-enter, .expand-leave {
-      height: 0;
-      padding: 0px 10px;
-      opacity: 0;
   }
   #app{
     width:1080px;

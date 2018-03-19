@@ -1,0 +1,38 @@
+.list{
+	padding: 0 36px;
+	ul{
+		margin-top: 56px;
+		li{
+			padding: 0 20px;
+			height: 144px;
+			line-height: 144px;
+			border-bottom: 1px solid #fff;
+			display:flex;
+			flex-direction: row;
+			justify-content: space-between;
+			span{
+
+				font-size: 48px;
+				color: #fff;
+				display: block;
+				font-weight: lighter;
+			}
+			a,i{
+				font-style: normal;
+				font-size: 48px;
+				font-weight: lighter;
+				color: rgb(248,182,45);
+			}
+			a{
+				text-decoration: underline;
+			}
+			&>*:last-child{
+				align-self: flex-end;
+			}
+			.avatar{
+				position: relative;
+				top: -30px;
+			}
+		}
+	}
+}

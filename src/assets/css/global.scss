@@ -116,6 +116,7 @@ header{
 						border-radius: 10px;
 						width: 100%;
 						height: 96px;
+						font-size: 46px;
 						background-color: #dcdddd;
 						border:1px solid #9fa0a0;
 					}
@@ -149,12 +150,51 @@ header{
 					select{
 						font-size: 46px;
 						flex: 1;
-						font-size: 54px;
 						border:1px solid #9fa0a0;
 						margin: 10px;
 						padding: 5px;
 						border-radius: 10px;
 						background-color: #fff;
+					}
+				}
+			}
+			.tip{
+				font-size: 36px;
+				line-height: 48px;
+				color: rgb(144,144,144);
+			}
+			.ftbar{
+				position: absolute;
+				bottom: 70px;
+				width: 100%;
+				left: 0;
+				padding: 0 50px;
+				a.next{
+					float: right;
+					text-align: right;
+					font-size: 54px;
+					color: rgb(144,133,133);
+					&:after{
+						display:inline-block;
+						content: '';
+						width: 20px;
+						height: 37px;
+						margin-left: 35px;
+						background:url(./assets/images/36_iconhdpi.png) no-repeat;
+					}
+				}
+				a.prev{
+					float: left;
+					text-align: left;
+					font-size: 54px;
+					color: rgb(144,133,133);
+					&:before{
+						display:inline-block;
+						content: '';
+						width: 20px;
+						height: 37px;
+						margin-right: 35px;
+						background:url(./assets/images/36_iconhdpi-1.png) no-repeat;
 					}
 				}
 			}

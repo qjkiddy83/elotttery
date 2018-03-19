@@ -1,0 +1,37 @@
+.container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.scroller-cont {
+  position: absolute;
+  width: 1080px;
+  top: 144px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  ol {
+    padding: 0 50px;
+    li {
+      color: #fff;
+      font-size: 36px;
+      line-height: 88px;
+      border-bottom: 1px solid #fff;
+      p {
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+  }
+}
+
+.article {
+  padding: 375px 72px 0;
+  p {
+    font-size: 56px;
+    color: #fff;
+    font-weight: lighter;
+    margin-bottom: 70px;
+  }
+}

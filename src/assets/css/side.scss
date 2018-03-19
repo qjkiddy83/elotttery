@@ -1,0 +1,67 @@
+.side-cont{
+	width:750px;
+	padding: 97px 80px 0;
+	height: 100%;
+	background:url(../../assets/images/bg_3hdpi.png) no-repeat #920783;
+	.profile{
+		text-align: center;
+		h3{
+			font-size: 54px;
+			color: #fff;
+			font-weight: lighter;
+			line-height: 160px;
+		}
+		.btn{
+			display: block;
+			color: #fff;
+			line-height: 96px;
+			font-size: 46px;
+			width: 400px;
+		}
+	}
+	ul{
+		margin-top: 56px;
+		li{
+			height: 144px;
+			line-height: 144px;
+			border-bottom: 1px solid #fff;
+			a{
+				font-size: 48px;
+				color: #fff;
+				display: block;
+				font-weight: lighter;
+				&:before{
+					content:'';
+					vertical-align: middle;
+					float: left;
+					margin-top: 22px;
+					width: 97px;
+					height: 97px;
+					margin-right: 20px;
+				}
+				&.mn-bets:before{
+					background: url(../../assets/images/mybets_iconhdpi.png) no-repeat;
+				}
+				&.mn-wallet:before{
+					background: url(../../assets/images/mywallet_iconhdpi.png) no-repeat;
+				}
+				&.mn-profile:before{
+					background: url(../../assets/images/myprofile_iconhdpi.png) no-repeat;
+				}
+				&.mn-settings:before{
+					background: url(../../assets/images/setting_iconhdpi.png) no-repeat;
+				}
+				&:after{
+					content:'';
+					vertical-align: middle;
+					float: right;
+					margin-top: 22px;
+					width: 97px;
+					height: 97px;
+					margin-right: 20px;
+					background: url(../../assets/images/arrow-r.png) no-repeat;
+				}
+			}
+		}
+	}
+}
