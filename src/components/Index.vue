@@ -195,12 +195,19 @@ export default {
     }
   },
   mounted:function(){
+    let now = (new Date()).getFullYear();
     let oqs = this.getQs();
     this.curBet = this.bets.length-1;
     // this.$refs.login.showLayer();
     // this.$refs.register.showLayer();
     if(oqs.auth){
-      this.initUserInfo = oqs;
+      this.initUserInfo = Object.assign({
+        gender:'male',
+        birthday:[now-30,0,1].join('-'),
+        phone:'',
+        fullname:'',
+        idno:''
+      },oqs);
       this.$refs.register.showLayer();
     }
   }

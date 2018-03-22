@@ -15,7 +15,7 @@
           </dl>
           <dl>
             <dt>Date of Birth <span>*</span></dt>
-            <calendar></calendar>
+            <calendar @birthchange="birthchange" :initdate="user.birthday"></calendar>
           </dl>
           <section class="ftbar">
             <a href="javascript:;" class="next" @click="stepChange" data-step="2">Next</a>
@@ -28,7 +28,7 @@
           </dl>
           <dl>
             <dt>Mobile Phone <span>*</span></dt>
-            <dd><input type="text" name=""></dd>
+            <dd><input type="text" name="" v-model="user.phone"></dd>
           </dl>
           <section class="ftbar">
             <a href="javascript:;" class="prev" @click="stepChange" data-step="1">Prev</a>
@@ -38,11 +38,11 @@
         <section v-if="step == 3">
           <dl>
             <dt>Full Name <span>*</span></dt>
-            <dd><input type="text" name=""></dd>
+            <dd><input type="text" name="" v-model="user.fullname"></dd>
           </dl>
           <dl>
             <dt>ID Number <span>*</span></dt>
-            <dd><input type="text" name=""></dd>
+            <dd><input type="text" name="" v-model="user.idno"></dd>
           </dl>
           <p class="tip">Your full name and ID number will be used in withdrawals, make sure your input conforms your ID card please.</p>
           <section class="ftbar">
@@ -93,6 +93,9 @@ export default {
       }else{
         this.step = toStep;
       }
+    },
+    birthchange:function(year,month,date){
+      this.user.birthday = [year,month,date].join('-')
     }
   },
   mounted:function(){
