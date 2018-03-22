@@ -4,7 +4,7 @@
       <section class="profile">
         <img src="../../assets/images/nopic_iconhdpi.png">
         <h3>Unregistered User</h3>
-        <a href="javascript:;" class="btn">Log In / Sign Up</a>
+        <a href="javascript:;" class="btn" @click="login">Log In / Sign Up</a>
       </section>
       <ul>
         <li><router-link class="mn-bets" to="bets">My Bets</router-link></li>
@@ -29,6 +29,10 @@ export default {
     },
     showMenu:function(){
       this.sideshow = true;
+    },
+    login:function(){
+      this.sideshow = false;
+      this.$emit('login');
     }
   },
   mounted:function(){

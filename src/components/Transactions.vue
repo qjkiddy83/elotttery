@@ -5,40 +5,46 @@
       <h1>Deposit</h1>
     </header>
     <section class="scroller-cont">
-      <scroller ref="my_scroller" class="scroller"
-        :on-refresh="refresh"
-        :on-infinite="infinite">
+      <section class="scroller">
         <ol>
           <li v-for="(item, index) in items" class="record">
             <p><span>{{item.ret}}</span><span>{{item.date}}</span></p>
             <p><span>balance:{{item.balance}}</span><span><b>{{item.change}}</b></span></p>
           </li>
         </ol>
-      </scroller>
+        <infinite-loading @infinite="infiniteHandler" spinner="circles">
+          <span slot="no-more">
+            There is no more Hacker News :(
+          </span>
+        </infinite-loading>
+      </section>
     </section>
   </div>
 </template>
 
 <script>
-import Vue from 'vue'
 import back from './mixins/back';
-import VueScroller from 'vue-scroller'
-Vue.use(VueScroller)
+import InfiniteLoading from 'vue-infinite-loading';
 
 let n = 0;
-
 export default {
   name: 'Transactions',
   components: {
-    back: back
+    back: back,
+    InfiniteLoading
   },
   data () {
     return {
-      items: []
+      items: [{
+        ret:'Withdrawal failure',
+        date:'Mar 4, 2018 10:21:53',
+        balance:'51.00',
+        change:'+50.00'
+      }]
     }
   },
   mounted() {
-    for (var i = 1; i <= 10; i++) {
+    for (var i = 1; i <= 5; i++) {
       this.items.push({
         ret:'Withdrawal failure',
         date:'Mar 4, 2018 10:21:53',
@@ -48,42 +54,41 @@ export default {
     }
   },
   methods: {
-    refresh (done) {
-      setTimeout(() => {
-        for (var i = 0; i < 10; i++) {
-          this.items.unshift({
-            ret:'Withdrawal failure--'+i,
+    infiniteHandler($state) {
+      setTimeout(() =>{
+        for (var i = 1; i <= 5; i++) {
+          this.items.push({
+            ret:'Withdrawal failure',
             date:'Mar 4, 2018 10:21:53',
             balance:'51.00',
             change:'+50.00'
           })
         }
-        done()
-      }, 1500)
+        n>2?$state.complete():$state.loaded();
+        n++;
+      },1500)
     },
-    infinite (done) {
-      setTimeout(() => {
-        if(n < 3){
-          for (var i = 0; i < 10; i++) {
-            this.items.push({
-              ret:'Withdrawal failure--'+(i+n*10),
-              date:'Mar 4, 2018 10:21:53',
-              balance:'51.00',
-              change:'+50.00'
-            })
-          }
-          n++;
-          done()
-        }else{
-          this.$refs.my_scroller.finishInfinite(true);
-        }
-      }, 1500)
-    }
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="scss">
+<style lang="scss" scoped>
+  .container{
+    position:relative;
+    height:100%;
+  }
+  .scroller-cont{
+    overflow:scroll;
+  }
   @import "../assets/css/transactions.scss"
+</style>
+<style lang="scss">
+  .infinite-status-prompt{
+    font-size:36px !important;
+  }
+  .infinite-loading-container [class^=loading-]{
+    margin-top:20px !important;
+    transform:scale(1.5);
+  }
 </style>

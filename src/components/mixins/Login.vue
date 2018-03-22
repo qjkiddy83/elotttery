@@ -29,21 +29,8 @@ export default {
       this.layerShow = true;
     },
     FBLogin:function(){
-      let that = this;
-      FB.getLoginStatus(function(response) {
-          console.log(response);
-          if (response.status === 'connected') {
-            // Logged into your app and Facebook.
-            FB.api('/me', function(response) {
-              console.log(response);
-              that.username = response.name;
-            });
-            
-          } else {
-            FB.login()
-          }
-      });
-      
+      this.layerShow = false;
+      this.$emit('logincallback');      
     }
   },
   mounted:function(){

@@ -1,0 +1,128 @@
+.tabs {
+  ul {
+    display: flex;
+    li {
+      position: relative;
+      flex: 1;
+      line-height: 130px;
+      background: #f8b62d;
+      color: rgb(92, 66, 27);
+      text-align: center;
+      font-size: 48px;
+      &.active {
+        border-left: 1px solid #000;
+        border-right: 1px solid #000;
+        color: #fff;
+        &:after {
+          content: '';
+          position: absolute;
+          background: rgb(234, 85, 20);
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 14px;
+        }
+      }
+    }
+  }
+}
+
+.scroller-cont {
+  position: absolute;
+  width: 1030px;
+  top: 303px;
+  left: 25px;
+  right: 25px;
+  bottom: 0;
+  dl{
+  	background-color: #fff;
+  	border-radius: 5px;
+  	margin-bottom: 30px;
+	  dt{
+	  	font-size: 36px;
+	  	padding:55px 25px 15px;
+	  	margin: 0 30px;
+	  	&>div{
+	  		display: flex;
+	  		justify-content: space-between;
+	  	}
+	  	span{
+
+	  	}
+	  	em{
+	  		font-style: normal;
+	  		color: #898989;
+	  	}
+	  	&.win{
+	  		margin: 0;
+	  		padding: 0 50px;
+	  		height: 184px;
+	  		background: #f8b62d;
+	  		line-height: 184px;
+	  		h4{
+	  			font-weight: normal;
+	  			font-size: 60px;
+	  		}
+	  		strong{
+	  			font-size: 60px;
+	  			font-weight: normal;
+	  			color: #e83828;
+	  		}
+	  	}
+	  	&.upcoming{
+	  		margin: 0;
+	  		padding: 20px 50px;
+	  		height: 184px;
+	  		background: #f8b62d;
+	  		display: flex;
+	  		flex-direction: column;
+	  		justify-content: space-between;
+	  		h4{
+	  			font-weight: normal;
+	  			font-size: 48px;
+	  		}
+	  		strong{
+	  			font-size: 48px;
+	  			color: #e83828;
+	  			font-weight: normal;
+	  		}
+	  	}
+	  }
+	  dd{
+	  	position: relative;
+	  	margin: 0 30px;
+	  	border-bottom: 1px solid #898989;
+	  	ul{
+	  		width: 750px;
+	  		padding: 20px 0;
+			  li.ball{
+			  	width: 70px;
+					height: 70px;
+					line-height: 50px;
+					font-size: 36px;
+					margin:12px;
+			  }
+	  	}
+		  .bet-info{
+		  	position: absolute;
+				right: 25px;
+				top: 50%;
+				transform: translateY(-50%);
+				p{
+					text-align: right;
+					span{
+						display: block;
+						font-size: 36px;
+						color:#c7481b;
+						&:last-child{
+							color:#000;
+						}
+					}
+				}
+		  }
+		  &:nth-last-child(2){
+		  	border-bottom: 0;
+		  }
+	  }
+  }
+}

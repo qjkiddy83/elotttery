@@ -8,12 +8,14 @@ import Settings from '@/components/Settings'
 import Deposit from '@/components/Deposit'
 import Transactions from '@/components/Transactions'
 import Profile from '@/components/Profile'
+import Bets from '@/components/Bets'
 
 Vue.use(Router)
 
 export default new Router({
 	// mode:'history',
   routes: [
+    { path: '*', component: Index },//处置404
     {
       path: '/',
       name: 'index',
@@ -53,6 +55,11 @@ export default new Router({
       path: '/profile',
       name: 'profile',
       component: Profile
+    },
+    {
+      path: '/bets',
+      name: 'bets',
+      component: Bets
     }
   ]
 })

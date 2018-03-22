@@ -7,19 +7,15 @@
         <section v-if="step == 1">
           <dl>
             <dt>Nickname <span>*</span></dt>
-            <dd><input type="text" name=""></dd>
+            <dd><input type="text" name="" v-model="user.nickname"></dd>
           </dl>
           <dl>
             <dt>Gender <span>*</span></dt>
-            <dd><label class="radio"><input type="radio" name=""><span><em></em>Male</span></label><label class="radio"><input type="radio" name=""><span><em></em>Female</span></label></dd>
+            <dd><label class="radio"><input type="radio" name="gender" v-model="user.gender" value="male"><span><em></em>Male</span></label><label class="radio"><input type="radio" name="gender" v-model="user.gender" value="female"><span><em></em>Female</span></label></dd>
           </dl>
           <dl>
             <dt>Date of Birth <span>*</span></dt>
-            <dd>
-              <select><option>Mar</option></select>
-              <select><option>10</option></select>
-              <select><option>1997</option></select>
-            </dd>
+            <calendar></calendar>
           </dl>
           <section class="ftbar">
             <a href="javascript:;" class="next" @click="stepChange" data-step="2">Next</a>
@@ -28,7 +24,7 @@
         <section v-if="step == 2">
           <dl>
             <dt>Email <span>*</span></dt>
-            <dd><input type="text" name=""></dd>
+            <dd><input type="text" name="" v-model="user.email"></dd>
           </dl>
           <dl>
             <dt>Mobile Phone <span>*</span></dt>
@@ -62,12 +58,25 @@
   </section>
 </template>
 <script>
+import Calendar from './Calendar';
+
 export default {
   name: 'Register',
+  components:{
+    calendar:Calendar
+  },
   data () {
     return {
       layerShow:false,
-      step : 1
+      step : 1,
+    }
+  },
+  props:{
+    user:{
+      type :Object,
+      default:function(){
+        return {gender:'male'}
+      }
     }
   },
   methods:{
@@ -84,23 +93,6 @@ export default {
       }else{
         this.step = toStep;
       }
-    },
-    FBLogin:function(){
-      let that = this;
-      FB.getLoginStatus(function(response) {
-          console.log(response);
-          if (response.status === 'connected') {
-            // Logged into your app and Facebook.
-            FB.api('/me', function(response) {
-              console.log(response);
-              that.username = response.name;
-            });
-            
-          } else {
-            FB.login()
-          }
-      });
-      
     }
   },
   mounted:function(){

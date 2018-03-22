@@ -2,7 +2,7 @@
   <div class="container">
     <header>
       <img src="../assets/images/profile_btnhdpi.png" @click="showMenu">
-      <h1>Lottery <em>Double Color Balls</em></h1>
+      <h1>{{$t("index.title")}} <em>{{$t("index.subhead")}}</em></h1>
     </header>
     <section class="notice">
       <p><span>Upcoming lottery time</span><span>Mar 11, 2018 19:30</span></p>
@@ -20,13 +20,13 @@
         </section>
       </section>
       <section class="balls-wrapper" v-if="curBet == betindex">
-        <h2><span>Red Balls</span><span>{{bet.select_red}}/6 Selected</span></h2>
+        <h2><span>{{$t("index.redballs")}}</span><span>{{$t('index.selected',{num:bet.select_red+"/6"})}}</span></h2>
         <ul class="balls">
           <li :key="'red'+index" v-for="(ball,index) in bet.redballs" @click="selectball" :data-index="index" :data-balltype="'redballs'" class="ball red" :class="ball.value?'active':''">
             {{ ball.name }}
           </li>
         </ul>
-        <h2><span class="blue">Blue Balls</span><span>{{bet.select_blue}}/1 Selected</span></h2>
+        <h2><span class="blue">{{$t("index.blueballs")}}</span><span>{{$t('index.selected',{num:bet.select_red+"/1"})}}</span></h2>
         <ul class="balls">
           <li :key="'blue'+index" v-for="(ball,index) in bet.blueballs" @click="selectball" :data-index="index" :data-balltype="'blueballs'" class="ball blue" :class="ball.value?'active':''">
             {{ ball.name }}
@@ -56,9 +56,9 @@
         <span>￡E {{all*2}}.00</span>
       </a>
     </section>
-    <login ref="login"></login>
-    <register ref="register"></register>
-    <sidemenu ref="sidemenu"></sidemenu>
+    <login ref="login" @logincallback="registerFunc"></login>
+    <register ref="register" :user="initUserInfo"></register>
+    <sidemenu ref="sidemenu" @login="loginFunc"></sidemenu>
   </div>
 </template>
 
@@ -67,6 +67,7 @@
 import Login from './mixins/Login';
 import Register from './mixins/Register';
 import SideMenu from './mixins/SideMenu';
+import queryParse from './mixins/queryParse';
 
 function factorial(n){
     return n > 1 ? n * factorial(n-1) : 1;
@@ -90,8 +91,10 @@ function betFactory(){
 
 export default {
   name: 'Index',
+  mixins:[queryParse],
   data () {
     return {
+      initUserInfo:{},
       bets:[betFactory()],
       curBet:0,
       anthor_show : false
@@ -168,6 +171,12 @@ export default {
     },
     showMenu:function(){
       this.$refs.sidemenu.showMenu();
+    },
+    loginFunc:function(){
+      this.$refs.login.showLayer();
+    },
+    registerFunc:function(){
+      this.$refs.register.showLayer();
     }
   },
   computed:{
@@ -186,9 +195,14 @@ export default {
     }
   },
   mounted:function(){
+    let oqs = this.getQs();
     this.curBet = this.bets.length-1;
     // this.$refs.login.showLayer();
     // this.$refs.register.showLayer();
+    if(oqs.auth){
+      this.initUserInfo = oqs;
+      this.$refs.register.showLayer();
+    }
   }
 }
 </script>

@@ -2,45 +2,6 @@
 	padding-bottom: 166px;
 }
 
-.balls{
-	display: flex;
-	flex-wrap: wrap;
-	flex-direction: row;
-	/*justify-content: space-between;*/
-	padding: 10px 0;
-	li.ball{
-		display: block;
-		list-style: none;
-		width: 96px;
-		height: 96px;
-		font-size: 48px;
-		line-height: 76px;
-		background-color: #dcdddd;
-		color: #595757;
-		text-align: center;
-		border-radius: 96px;
-		margin:13.5px;
-		border:10px solid #dcdddd;
-		font-weight: bolder;
-		&.red{
-			@extend li;
-			&.active{
-				border-color: #f8b62d;
-				background-color: #e60012;
-				color: #fff;
-			}
-		}
-		&.blue{
-			@extend li;
-			&.active{
-				border-color: #f8b62d;
-				background-color: #036eb8;
-				color: #fff;
-			}
-		}
-	}
-}
-
 header{
 	position:relative;
 	background:url('../assets/images/bannerhdpi.png') no-repeat;
