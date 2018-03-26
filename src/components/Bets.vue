@@ -29,7 +29,19 @@
       </section>
       <section class="scroller" v-if="betstatus == 2">
         <dl v-for="record in winning.items">
-          <dt><div><span>Lottery Double Color Balls</span><em>{{timestamp(record.ctime*1000)}}</em></div></dt>
+          <dt><div><span>Lottery Double Color Balls</span><em>{{timestamp(record.lottery_time*1000)}}</em></div></dt>
+          <dd v-for="pbets in parseBets(record.bets)">
+            <bets-balls :balls="pbets"></bets-balls>
+            <section class="bet-info">
+              <p><span>￡E {{pbets.count*2}}.00</span><span>x{{pbets.count}}</span></p>
+            </section>
+          </dd>
+          <dt class="win"><div><h4>You won</h4><strong>￡E {{record.win_amount}}</strong></div></dt>
+        </dl>
+      </section>
+      <section class="scroller" v-if="betstatus == 3">
+        <dl v-for="record in history.items">
+          <dt><div><span>Lottery Double Color Balls</span><em>{{timestamp(record.lottery_time*1000)}}</em></div></dt>
           <dd v-for="pbets in parseBets(record.bets)">
             <bets-balls :balls="pbets"></bets-balls>
             <section class="bet-info">
