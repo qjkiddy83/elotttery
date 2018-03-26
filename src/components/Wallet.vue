@@ -6,12 +6,12 @@
     </header>
     <section class="card">
       <h3>Balance</h3>
-      <strong><i>￡E </i>5.00</strong>
+      <strong><i>￡E </i>{{user.balance}}</strong>
     </section>
     <section class="list">
       <ul>
-        <li><router-link class="mn-deposit" to="deposit">Deposit</router-link></li>
-        <li><router-link class="mn-withdraw" to="deposit">Withdraw</router-link></li>
+        <li><router-link class="mn-deposit" :to='{name:"deposit",params:{title:"Deposit"}}'>Deposit</router-link></li>
+        <li><router-link class="mn-withdraw" :to='{name:"deposit",params:{title:"Withdraw"}}'>Withdraw</router-link></li>
         <li><router-link class="mn-transactions" to="transactions">Transactions</router-link></li>
       </ul>
     </section>
@@ -27,8 +27,11 @@ export default {
   },
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      user:{}
     }
+  },
+  mounted:function(){
+    this.user = JSON.parse(sessionStorage.user);
   }
 }
 </script>

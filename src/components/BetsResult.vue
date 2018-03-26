@@ -13,10 +13,10 @@
       </section>
       <section class="btn-cont">
         <div>
-          <a class="btn">Continue betting</a>
+          <router-link class="btn" to="index">Continue betting</router-link>
         </div>
         <div>
-          <a class="btn">View my bets</a>
+          <router-link class="btn" to="bets">View my bets</router-link>
         </div>
       </section>
     </section>

@@ -1,11 +1,11 @@
 <template>
   <div class="container">
     <header>
-      <img src="../assets/images/profile_btnhdpi.png" @click="showMenu">
+      <img :src="initUserInfo.avatar?initUserInfo.avatar:require('../assets/images/profile_btnhdpi.png')" @click="showMenu">
       <h1>{{$t("index.title")}} <em>{{$t("index.subhead")}}</em></h1>
     </header>
     <section class="notice">
-      <p><span>Upcoming lottery time</span><span>Mar 11, 2018 19:30</span></p>
+      <p><span>Upcoming lottery time</span><span>{{lotteryTimestamp}}</span></p>
       <strong>Choose 6 red balls + 1 blue balls to hit 5,000,000</strong>
     </section>
     <section class="bets-selected" v-for="(bet,betindex) in bets" >
@@ -26,7 +26,7 @@
             {{ ball.name }}
           </li>
         </ul>
-        <h2><span class="blue">{{$t("index.blueballs")}}</span><span>{{$t('index.selected',{num:bet.select_red+"/1"})}}</span></h2>
+        <h2><span class="blue">{{$t("index.blueballs")}}</span><span>{{$t('index.selected',{num:bet.select_blue+"/1"})}}</span></h2>
         <ul class="balls">
           <li :key="'blue'+index" v-for="(ball,index) in bet.blueballs" @click="selectball" :data-index="index" :data-balltype="'blueballs'" class="ball blue" :class="ball.value?'active':''">
             {{ ball.name }}
@@ -51,14 +51,14 @@
     </section>
     <section class="bbar">
       <section class="msg">Total:{{all}} Ticket</section>
-      <a href="javascript:;" class="btn" @click="submit">
+      <a href="javascript:;" class="btn" :class="all?'':'disable'" @click="submit">
         <span>Place Bet</span>
         <span>￡E {{all*2}}.00</span>
       </a>
     </section>
     <login ref="login" @logincallback="registerFunc"></login>
     <register ref="register" :user="initUserInfo"></register>
-    <sidemenu ref="sidemenu" @login="loginFunc"></sidemenu>
+    <sidemenu ref="sidemenu" @login="loginFunc" :user="initUserInfo"></sidemenu>
   </div>
 </template>
 
@@ -68,6 +68,7 @@ import Login from './mixins/Login';
 import Register from './mixins/Register';
 import SideMenu from './mixins/SideMenu';
 import queryParse from './mixins/queryParse';
+import UserInfo from './mixins/UserInfo';
 
 function factorial(n){
     return n > 1 ? n * factorial(n-1) : 1;
@@ -91,13 +92,14 @@ function betFactory(){
 
 export default {
   name: 'Index',
-  mixins:[queryParse],
+  mixins:[queryParse,UserInfo],
   data () {
     return {
       initUserInfo:{},
       bets:[betFactory()],
       curBet:0,
-      anthor_show : false
+      termNo:0,
+      lotteryTime:Date.now()/1000
     }
   },
   components: {
@@ -121,6 +123,10 @@ export default {
           curbet.select_blue = t_ball.value?cur_s_blue+1:cur_s_blue-1;
         break;
       }
+      this.$nextTick(() =>{
+        localStorage.bets = JSON.stringify(this.bets);
+      })
+      
     },
     showMultCtrl:function(){
       this.bets[this.curBet].mult_show = true;
@@ -135,6 +141,9 @@ export default {
         if(curbet.times >= 100) return;
         curbet.times++;
       }
+      this.$nextTick(() =>{
+        localStorage.bets = JSON.stringify(this.bets);
+      })
     },
     addAnother:function(){
       let matched = 0;
@@ -167,7 +176,14 @@ export default {
       })
     },
     submit:function(){
-      this.$router.push('checkbets')
+      if(!this.all){
+        return;
+      }
+      if(!this.initUserInfo.id_number){
+        this.loginFunc();
+        return;
+      }
+      this.$router.push({name:'checkbets',params:{checked_bets:this.bets,termNo:this.termNo,lotteryTime:this.lotteryTime}})
     },
     showMenu:function(){
       this.$refs.sidemenu.showMenu();
@@ -192,10 +208,14 @@ export default {
       let total =  parseInt((factorial(curbet.select_red)*curbet.select_blue)/(factorial(6)*factorial(curbet.select_red-6)))*curbet.times;
       this.bets[this.curBet].total = total;
       return total;
+    },
+    lotteryTimestamp:function(){
+      let dt = new Date(this.lotteryTime*1000);
+      return `${this.$t('calendar.month')[dt.getMonth()]} ${dt.getDate()}, ${dt.getFullYear()} ${dt.getHours()}:${dt.getMinutes()}`;
     }
   },
   mounted:function(){
-    let now = (new Date()).getFullYear();
+    let now = Date.now()/1000;
     let oqs = this.getQs();
     this.curBet = this.bets.length-1;
     // this.$refs.login.showLayer();
@@ -203,13 +223,46 @@ export default {
     if(oqs.auth){
       this.initUserInfo = Object.assign({
         gender:'male',
-        birthday:[now-30,0,1].join('-'),
+        birthday:now,
         phone:'',
         fullname:'',
-        idno:''
+        idnumber:''
       },oqs);
       this.$refs.register.showLayer();
+    }else{
+      this.getUserInfo().then(response =>{
+        if(response.status == 1){
+          this.initUserInfo = response.data;
+          sessionStorage.user = JSON.stringify(this.initUserInfo);
+
+          //登录状态下，获取用户信息
+          this.$.ajax({
+            url:'http://manage.yubaxi.com/api/bets/info',
+            type:'get',
+            xhrFields:{
+              withCredentials:true
+            },
+            crossDomain:true
+          }).then(response =>{
+            if(response.status == 1){
+              this.lotteryTime = response.data.lotteryTime;
+              this.termNo = response.data.termNo;
+            }else{
+              alert("获取信息失败")
+            }
+
+          })
+          this.bets = localStorage.bets?JSON.parse(localStorage.bets):[betFactory()];
+        }else{
+          this.$refs.login.showLayer();
+        }
+        // console.log(response)
+      })
+
+      
     }
+
+    
   }
 }
 </script>

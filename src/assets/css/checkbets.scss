@@ -60,6 +60,10 @@
 		margin-top: 127px;
 		.btn{
 			margin-bottom: 74px;
+			color:#ea5514;
+			&.disable{
+				color:#fff;
+			}
 		}
 	}
 }

@@ -67,6 +67,10 @@ li{
 	padding: 0 55px;
 	border-radius: 10px;
 	min-width:600px;
+	&.disable{
+		background-color:rgb(153,153,153);
+		color:#fff;
+	}
 }
 header{
 	position:relative;

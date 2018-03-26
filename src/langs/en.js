@@ -1,4 +1,12 @@
 module.exports = {
+	nomore:'There is no more records :(',
+	transctions_type:{
+		// 1 deposit 存款； 2 bet 下注；3 wining 中奖； 4  Withdrawal 取款
+		deposit:'Deposit',
+		bet:'Bet',
+		wining:'Wining',
+		withdrawal:'Withdrawal'
+	},
 	calendar:{
 		month:["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
 	},

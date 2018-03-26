@@ -11,7 +11,7 @@
           </dl>
           <dl>
             <dt>Gender <span>*</span></dt>
-            <dd><label class="radio"><input type="radio" name="gender" v-model="user.gender" value="male"><span><em></em>Male</span></label><label class="radio"><input type="radio" name="gender" v-model="user.gender" value="female"><span><em></em>Female</span></label></dd>
+            <dd><label class="radio"><input type="radio" name="gender" v-model="user.gender" value="1"><span><em></em>Male</span></label><label class="radio"><input type="radio" name="gender" v-model="user.gender" value="2"><span><em></em>Female</span></label></dd>
           </dl>
           <dl>
             <dt>Date of Birth <span>*</span></dt>
@@ -42,7 +42,7 @@
           </dl>
           <dl>
             <dt>ID Number <span>*</span></dt>
-            <dd><input type="text" name="" v-model="user.idno"></dd>
+            <dd><input type="text" name="" v-model="user.idnumber"></dd>
           </dl>
           <p class="tip">Your full name and ID number will be used in withdrawals, make sure your input conforms your ID card please.</p>
           <section class="ftbar">
@@ -71,14 +71,7 @@ export default {
       step : 1,
     }
   },
-  props:{
-    user:{
-      type :Object,
-      default:function(){
-        return {gender:'male'}
-      }
-    }
-  },
+  props:["user"],
   methods:{
     closeLayer:function(){
       this.layerShow = false;
@@ -89,13 +82,58 @@ export default {
     stepChange:function(e){
       let toStep = e.target.dataset.step;
       if(toStep === "submit"){
+        if(!this.user.fullname){
+          alert('fullname is required')
+          return false;
+        }else if(!this.user.idnumber){
+          alert('ID Number is required')
+          return false;
+        }
+        let _user = Object.assign({
+          email: this.user.email,
+          phone: this.user.phone,
+          gender: this.user.gender,
+          birthday: this.user.birthday,
+          fullname: this.user.fullname,
+          idnumber: this.user.idnumber,
+          nickname: this.user.nickname
+        });
+        this.$.ajax({
+          url : 'http://manage.yubaxi.com/api/updateUserInfo',
+          data : _user,
+          type: 'post',
+          xhrFields:{
+            withCredentials:true
+          },
+          crossDomain:true
+        }).then(response =>{
+          if(response.status === 1){
+            location.href = "/"
+          }
+        })
 
       }else{
+        if(toStep == 2){
+          if(!this.user.nickname){
+            alert('nickname is required')
+            return false;
+          }
+          if(!this.user.gender){
+            alert('gender is required')
+            return false;
+          }
+        }else if(toStep == 3){
+          if(!this.user.phone){
+            alert('mobile phone is required')
+            return false;
+          }
+        }
         this.step = toStep;
       }
     },
     birthchange:function(year,month,date){
-      this.user.birthday = [year,month,date].join('-')
+      console.log(year,month,date)
+      this.user.birthday = new Date([year,month+1,date].join('-')).getTime()/1000
     }
   },
   mounted:function(){

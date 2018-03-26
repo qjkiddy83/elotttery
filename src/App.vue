@@ -1,6 +1,8 @@
 <template>
   <div id="app" :style="'height:'+wh+'px;'">
+    <!-- <keep-alive> -->
     <router-view/>
+  <!-- </keep-alive> -->
     <!-- <div class="logger">{{width}}----{{height}}----{{wh}}</div> -->
   </div>
 </template>

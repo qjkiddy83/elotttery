@@ -25,7 +25,40 @@
 			height: 144px;
 			line-height: 144px;
 			border-bottom: 1px solid #fff;
-			a{
+
+			&.logined{
+				border-top: 1px solid #fff;
+				height:180px;
+				line-height: 1.5;
+				dl{
+					height: 180px;
+					display:flex;
+					justify-content: space-between;
+					padding-left: 20px;
+					dt{
+						font-size:48px;
+						color:#fff;
+						align-self: center;
+						b{
+							color: #f8b62d;
+						}
+					}
+					dd{
+						align-self: center;
+						.btn{
+							width:235px;
+							min-width:235px;
+							padding:0;
+							height: 96px;
+							color: #fff;
+							font-size: 48px;
+							text-align: center;
+							line-height: 96px;
+						}
+					}
+				}
+			}
+			&>a{
 				font-size: 48px;
 				color: #fff;
 				display: block;

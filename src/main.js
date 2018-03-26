@@ -11,12 +11,13 @@ import enlang from './langs/en';
 import arlang from './langs/ar';
 
 const messages = {
+  auto: enlang,
   en: enlang,
   ar: arlang
 }
 
 function getLang(){//默认语言
-  return messages[navigator.languages[0]]?navigator.languages[0]:'en';
+  return messages[navigator.language]?navigator.language:'en';
 }
 
 const i18n = new VueI18n({
@@ -26,6 +27,8 @@ const i18n = new VueI18n({
 })
 
 Vue.config.productionTip = false
+import $ from 'jquery';
+Vue.prototype.$ = $;
 
 /* eslint-disable no-new */
 new Vue({

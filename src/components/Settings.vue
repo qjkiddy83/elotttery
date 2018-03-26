@@ -8,7 +8,7 @@
       <section class="card">
         <ul>
           <li><span>{{$t("settings.enable_notification")}}</span><a class="swither"><input type="checkbox" name="notification" v-model="notification"><i></i></a></li>
-          <li><span>{{$t("settings.language")}}</span><select @change="langChange" v-model="lang"><option value="auto">Auto</option><option value="en">English</option><option value="ar">اللغة العربية</option></select></li>
+          <li><span>{{$t("settings.language")}}</span><select v-model="language"><option value="1">Auto</option><option value="2">English</option><option value="3">اللغة العربية</option></select></li>
         </ul>
       </section>
       <section class="card">
@@ -18,7 +18,7 @@
         </ul>
       </section>
       <section class="btn-cont">
-        <a href="javascript:;" class="btn">{{$t("settings.logout")}}</a>
+        <a href="javascript:;" class="btn" @click="logout">{{$t("settings.logout")}}</a>
       </section>
     </section>
   </div>
@@ -26,20 +26,93 @@
 
 <script>
 import back from './mixins/back';
+import UserInfo from './mixins/UserInfo';
 export default {
   name: 'Settings',
   components: {
     back: back
   },
+  mixins:[UserInfo],
   data () {
     return {
-      notification:false,
-      lang: 'auto'
+      user:{},
+      notification:0,
+      language:0
     }
   },
+  mounted:function(){
+    let user = JSON.parse(sessionStorage.user);
+    this.user = user;
+    this.notification = user.notification%2;
+    this.language = user.language
+  },
+  // computed:{
+  //   lang:{
+  //     get(){
+  //       return ['auto','en','ar'][this.user.language]
+  //     },
+  //     set(val){
+  //       this.user.language = ['auto','en','ar'].indexOf(this.lang)
+  //       this.$i18n.locale = this.lang
+  //     }
+  //   }
+  // },
   methods:{
-    langChange:function(e){
-      this.$i18n.locale = this.lang
+    logout:function(){
+      this.$.ajax({
+        url : 'http://manage.yubaxi.com/api/logout',
+        type: 'get',
+        xhrFields:{
+          withCredentials:true
+        },
+        crossDomain:true
+      }).then(response =>{
+        if(response.status === 1){
+          location.href = "/"
+        }
+      })
+    }
+  },
+  watch:{
+    notification(curVal,oldVal){
+      if(curVal == this.user.notification%2){
+        return;
+      }
+      let _notifi = curVal?1:2;
+      this.$.ajax({
+        url : 'http://manage.yubaxi.com/api/updateUserInfo',
+        data : {
+          notification:_notifi
+        },
+        type: 'post',
+        xhrFields:{
+          withCredentials:true
+        },
+        crossDomain:true
+      }).then(response =>{
+        this.user.notification = _notifi;
+        sessionStorage.user = JSON.stringify(this.user);
+      })
+    },
+    language(curVal,oldVal){
+      if(oldVal == 0){
+        return;
+      }
+      this.$i18n.locale = ['auto','en','ar'][curVal-1];
+      this.$.ajax({
+        url : 'http://manage.yubaxi.com/api/updateUserInfo',
+        data : {
+          language:curVal
+        },
+        type: 'post',
+        xhrFields:{
+          withCredentials:true
+        },
+        crossDomain:true
+      }).then(response =>{
+        this.user.language = curVal;
+        sessionStorage.user = JSON.stringify(this.user);
+      })
     }
   }
 }

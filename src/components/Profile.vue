@@ -6,30 +6,66 @@
     </header>
     <section class="list">
       <ul>
-        <li><span>Profile Photo</span><img src="../assets/images/nopic_iconhdpi.png" width="144" height="144" class="avatar"></li>
-        <li><span>Nickname</span><a href="javascript:;">Frank</a></li>
-        <li><span>Gender</span><i>Male</i></li>
-        <li><span>Date of Birth</span><i>Mar 13, 1997</i></li>
-        <li><span>Email</span><i>abcde@gmail.com</i></li>
-        <li><span>Mobile Phone</span><i>---</i></li>
-        <li><span>Full Name</span><a href="javascript:;">حمحممحمدحم</a></li>
-        <li><span>ID Number</span><i>NB1234567890</i></li>
+        <li><span>Profile Photo</span><img :src="user.avatar" width="144" height="144" class="avatar"></li>
+        <li><span>Nickname</span><a href="javascript:;" @click="update" data-upname="nickname">{{user.nickname}}</a></li>
+        <li><span>Gender</span><a href="javascript:;" @click="update" data-upname="gender">{{gender}}</a></li>
+        <li><span>Date of Birth</span><a href="javascript:;" @click="update" data-upname="birthday">{{birth}}</a></li>
+        <li><span>Email</span><a href="javascript:;" @click="update" data-upname="email">{{user.email}}</a></li>
+        <li><span>Mobile Phone</span><a href="javascript:;" @click="update" data-upname="phone">{{user.phone}}</a></li>
+        <li><span>Full Name</span><a href="javascript:;" @click="update" data-upname="fullname">{{user.fullname}}</a></li>
+        <li><span>ID Number</span><a href="javascript:;" @click="update" data-upname="idnumber">{{user.idnumber}}</a></li>
       </ul>
     </section>
+    <update-user-info :user="user" ref="updateUserInfo"></update-user-info>
   </div>
 </template>
 
 <script>
 import back from './mixins/back';
+import UpdateUserInfo from './mixins/UpdateUserInfo';
+
 export default {
   name: 'Profile',
   components: {
-    back: back
+    back: back,
+    UpdateUserInfo:UpdateUserInfo
   },
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      user: {
+        birthday:0
+      },
+      upname:''
     }
+  },
+  computed:{
+    birth:function(){
+      let birthday = new Date(this.user.birthday*1000);
+      return `${birthday.getDate()} ${this.$t('calendar.month')[birthday.getMonth()]},${birthday.getFullYear()}`
+    },
+    gender:function(){
+      return this.user.gender==1?"Male":"Female";
+    }
+  },
+  methods:{
+    update:function(e){
+      this.$refs.updateUserInfo.showDialog(e.target.dataset.upname)
+    }
+  },
+  mounted:function(){
+    // this.$.ajax({
+    //   url:'http://manage.yubaxi.com/api/user/info',
+    //   type:'get',
+    //   xhrFields:{
+    //     withCredentials:true
+    //   },
+    //   crossDomain:true
+    // }).then(response =>{
+    //   if(response.status == 1){
+    //     this.user = response.data;
+    //   }
+    // })
+    this.user = JSON.parse(sessionStorage.user);
   }
 }
 </script>

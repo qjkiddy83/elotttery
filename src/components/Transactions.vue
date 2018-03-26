@@ -2,19 +2,22 @@
   <div class="container">
     <header>
       <back></back>
-      <h1>Deposit</h1>
+      <h1>Transactions</h1>
     </header>
     <section class="scroller-cont">
       <section class="scroller">
         <ol>
           <li v-for="(item, index) in items" class="record">
-            <p><span>{{item.ret}}</span><span>{{item.date}}</span></p>
-            <p><span>balance:{{item.balance}}</span><span><b>{{item.change}}</b></span></p>
+            <p><span>{{transactionType(item.type)}}</span><span>{{timestamp(item.updated_at)}}</span></p>
+            <p><span>balance:{{item.balance}}</span><span><b>{{item.amount}}</b></span></p>
           </li>
         </ol>
         <infinite-loading @infinite="infiniteHandler" spinner="circles">
           <span slot="no-more">
-            There is no more Hacker News :(
+            {{$t('nomore')}}
+          </span>
+          <span slot="no-results">
+            {{$t('nomore')}}
           </span>
         </infinite-loading>
       </section>
@@ -35,38 +38,55 @@ export default {
   },
   data () {
     return {
-      items: [{
-        ret:'Withdrawal failure',
-        date:'Mar 4, 2018 10:21:53',
-        balance:'51.00',
-        change:'+50.00'
-      }]
+      items: [],
+      page:1,
+      pageCount:10
     }
   },
   mounted() {
-    for (var i = 1; i <= 5; i++) {
-      this.items.push({
-        ret:'Withdrawal failure',
-        date:'Mar 4, 2018 10:21:53',
-        balance:'51.00',
-        change:'+50.00'
-      })
-    }
+    // user/transactions?page=2&pageCount=1
+    // this.$.ajax({
+    //   url:`http://manage.yubaxi.com/api/user/transactions?page=${this.page}&pageCount=${this.pageCount}`,
+    //   type:'get',
+    //   xhrFields:{
+    //     withCredentials:true
+    //   },
+    //   crossDomain:true
+    // }).then(response =>{
+    //   if(response.status == 1){
+    //     this.items = this.items.concat(response.data)
+    //   }
+    // })
   },
   methods: {
+    //1 deposit 存款； 2 bet 下注；3 wining 中奖； 4  Withdrawal 取款
+    transactionType:function(code){
+      let typename = ['','deposit','bet','wining','withdrawal'][code];
+      return this.$t(`transctions_type.${typename}`)
+    },
+    timestamp:function(time){
+      let dt = new Date(time);
+      return `${this.$t('calendar.month')[dt.getMonth()]} ${dt.getDate()}, ${dt.getFullYear()} ${dt.getHours()}:${dt.getMinutes()}:${dt.getSeconds()}`; 
+    },
     infiniteHandler($state) {
-      setTimeout(() =>{
-        for (var i = 1; i <= 5; i++) {
-          this.items.push({
-            ret:'Withdrawal failure',
-            date:'Mar 4, 2018 10:21:53',
-            balance:'51.00',
-            change:'+50.00'
-          })
+      this.$.ajax({
+        url:`http://manage.yubaxi.com/api/user/transactions?page=${this.page}&pageCount=${this.pageCount}`,
+        type:'get',
+        xhrFields:{
+          withCredentials:true
+        },
+        crossDomain:true
+      }).then(response =>{
+        this.page++;
+        if(response.status == 1){
+          this.items = this.items.concat(response.data)
         }
-        n>2?$state.complete():$state.loaded();
-        n++;
-      },1500)
+        if(response.data.length<this.pageCount){
+          $state.complete()
+        }else{
+          $state.loaded();
+        }
+      })
     },
   }
 }

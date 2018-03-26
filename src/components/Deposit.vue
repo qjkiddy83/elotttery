@@ -2,7 +2,7 @@
   <div class="container">
     <header>
       <back></back>
-      <h1>Deposit / Withdraw</h1>
+      <h1>{{title}}</h1>
     </header>
     <section class="article">
       <p>Online deposit / withdrawal is under construction.Contact our customer service for offline deposit / withdrawal please.Your user number will be asked to identify your account</p>
@@ -23,8 +23,12 @@ export default {
   },
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      title: 'Deposit'
     }
+  },
+  mounted:function(){
+    if(this.$route.params.title)
+    this.title = this.$route.params.title;
   }
 }
 </script>
