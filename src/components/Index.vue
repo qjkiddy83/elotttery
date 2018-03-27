@@ -1,61 +1,120 @@
 <template>
   <div class="container">
     <header>
-      <img :src="initUserInfo.avatar?initUserInfo.avatar:require('../assets/images/profile_btnhdpi.png')" @click="showMenu">
+      <img :src="initUserInfo.avatar?initUserInfo.avatar:require('../assets/images/profile_btnhdpi.png')" @click="showMenu" width="96" height="96">
       <h1>{{$t("index.title")}} <em>{{$t("index.subhead")}}</em></h1>
     </header>
-    <section class="notice">
-      <p><span>Upcoming lottery time</span><span>{{lotteryTimestamp}}</span></p>
-      <strong>Choose 6 red balls + 1 blue balls to hit 5,000,000</strong>
-    </section>
-    <section class="bets-selected" v-for="(bet,betindex) in bets" >
-      <section class="bet-group" v-if="curBet != betindex">
-        <ul class="balls">
-          <li v-for="ball in bet.redballs" v-if="ball.value" class="ball red active">{{ball.name}}</li>
-          <li v-for="ball in bet.blueballs" v-if="ball.value" class="ball blue active">{{ball.name}}</li>
-        </ul>
-        <section class="bet-info">
-          <p><span>￡E {{bet.total*2}}.00</span><span>x{{bet.total}}</span></p>
-          <img src="../assets/images/godown_btnhdpi.png" @click="changeBet" :data-betindex="betindex">
-        </section>
+    <!-- 等待开奖 -->
+    <section v-if="lotteryStatus==2">
+      <section class="notice">
+        <section class="status2">Upcoming lottery time: {{lotteryTimestamp}}</section>
       </section>
-      <section class="balls-wrapper" v-if="curBet == betindex">
-        <h2><span>{{$t("index.redballs")}}</span><span>{{$t('index.selected',{num:bet.select_red+"/6"})}}</span></h2>
-        <ul class="balls">
-          <li :key="'red'+index" v-for="(ball,index) in bet.redballs" @click="selectball" :data-index="index" :data-balltype="'redballs'" class="ball red" :class="ball.value?'active':''">
-            {{ ball.name }}
-          </li>
-        </ul>
-        <h2><span class="blue">{{$t("index.blueballs")}}</span><span>{{$t('index.selected',{num:bet.select_blue+"/1"})}}</span></h2>
-        <ul class="balls">
-          <li :key="'blue'+index" v-for="(ball,index) in bet.blueballs" @click="selectball" :data-index="index" :data-balltype="'blueballs'" class="ball blue" :class="ball.value?'active':''">
-            {{ ball.name }}
-          </li>
-        </ul>
-        <section class="mult">
-          <a v-if="!bet.mult_show" class="tomult" @click="showMultCtrl"><img src="../assets/images/godown_btnhdpi.png"><span>Multiple Bets</span></a>
-          <section class="multctrls"  v-if="bet.mult_show">
-            <span>Multiple Bets</span>
-            <section class="multbtns">
-              <a href="javascript:;" @click="timesHandler" data-sum="-">-</a>
-              <b>{{bet.times}}</b>
-              <a href="javascript:;" @click="timesHandler" data-sum="+">+</a>
-              <span>Times</span>
+      <section class="balls-wrapper">
+          <h2>Result</h2>
+          <ul class="balls">
+            <li class="ball active red">?</li>
+            <li class="ball active red">?</li>
+            <li class="ball active red">?</li>
+            <li class="ball active red">?</li>
+            <li class="ball active red">?</li>
+            <li class="ball active red">?</li>
+            <li class="ball active blue">?</li>
+          </ul>
+      </section>
+      <section class="prize-wrapper">
+        <h2>Winings</h2>
+        <section class="box">
+          <dl><dt>1st Prize</dt><dd>￡E ?????({{toThousands(lotteryResult.prizeInfo.maximum)}} maximum)</dd></dl>
+          <dl><dt>2st Prize</dt><dd>￡E ?????</dd></dl>
+          <dl><dt>3st Prize</dt><dd>￡E {{toThousands(lotteryResult.prizeInfo.prize3)}}</dd></dl>
+          <dl><dt>4st Prize</dt><dd>￡E {{toThousands(lotteryResult.prizeInfo.prize4)}}</dd></dl>
+          <dl><dt>5st Prize</dt><dd>￡E {{toThousands(lotteryResult.prizeInfo.prize5)}}</dd></dl>
+          <dl><dt>6st Prize</dt><dd>￡E {{toThousands(lotteryResult.prizeInfo.prize6)}}</dd></dl>
+        </section>
+        <section class="tip">Term {{lotteryResult.nextTermNo}} is waiting for the draw. <br>Who is the next millionaire?</section>
+      </section>
+    </section>
+    <!-- 显示开奖结果 -->
+    <section v-else-if="lotteryStatus==3">
+      <section class="notice">
+        <section class="status2">Lottery time: {{lotteryTimestamp}}</section>
+      </section>
+      <section class="balls-wrapper">
+          <h2>Result</h2>
+          <ul class="balls">
+            <li v-for="ball in lotteryResult.redBall" class="ball active red">{{ball}}</li>
+            <li class="ball active blue">{{lotteryResult.blueBall}}</li>
+          </ul>
+      </section>
+      <section class="prize-wrapper">
+        <h2>Winings</h2>
+        <section class="box">
+          <dl><dt>1st Prize</dt><dd>￡E {{toThousands(lotteryResult.prizeInfo.prize1)}}</dd></dl>
+          <dl><dt>2st Prize</dt><dd>￡E {{toThousands(lotteryResult.prizeInfo.prize2)}}</dd></dl>
+          <dl><dt>3st Prize</dt><dd>￡E {{toThousands(lotteryResult.prizeInfo.prize3)}}</dd></dl>
+          <dl><dt>4st Prize</dt><dd>￡E {{toThousands(lotteryResult.prizeInfo.prize4)}}</dd></dl>
+          <dl><dt>5st Prize</dt><dd>￡E {{toThousands(lotteryResult.prizeInfo.prize5)}}</dd></dl>
+          <dl><dt>6st Prize</dt><dd>￡E {{toThousands(lotteryResult.prizeInfo.prize6)}}</dd></dl>
+        </section>
+        <section class="tip">Next term will be opened on {{nextLottery}}.</section>
+      </section>
+    </section>
+    <!-- 下注阶段 -->
+    <section v-else-if="lotteryStatus==1" class="mb166">
+      <section class="notice">
+        <p><span>Upcoming lottery time</span><span>{{lotteryTimestamp}}</span></p>
+        <strong>Choose 6 red balls + 1 blue balls to hit 5,000,000</strong>
+      </section>
+      <section class="bets-selected" v-for="(bet,betindex) in bets" >
+        <section class="bet-group" v-if="curBet != betindex">
+          <ul class="balls">
+            <li v-for="ball in bet.redballs" v-if="ball.value" class="ball red active">{{ball.name}}</li>
+            <li v-for="ball in bet.blueballs" v-if="ball.value" class="ball blue active">{{ball.name}}</li>
+          </ul>
+          <section class="bet-info">
+            <p><span>￡E {{bet.total*2}}.00</span><span>x{{bet.total}}</span></p>
+            <img src="../assets/images/godown_btnhdpi.png" @click="changeBet" :data-betindex="betindex">
+          </section>
+        </section>
+        <section class="balls-wrapper" v-if="curBet == betindex">
+          <h2><span>{{$t("index.redballs")}}</span><span>{{$t('index.selected',{num:bet.select_red+"/6"})}}</span></h2>
+          <ul class="balls">
+            <li :key="'red'+index" v-for="(ball,index) in bet.redballs" @click="selectball" :data-index="index" :data-balltype="'redballs'" class="ball red" :class="ball.value?'active':''">
+              {{ ball.name }}
+            </li>
+          </ul>
+          <h2><span class="blue">{{$t("index.blueballs")}}</span><span>{{$t('index.selected',{num:bet.select_blue+"/1"})}}</span></h2>
+          <ul class="balls">
+            <li :key="'blue'+index" v-for="(ball,index) in bet.blueballs" @click="selectball" :data-index="index" :data-balltype="'blueballs'" class="ball blue" :class="ball.value?'active':''">
+              {{ ball.name }}
+            </li>
+          </ul>
+          <section class="mult">
+            <a v-if="!bet.mult_show" class="tomult" @click="showMultCtrl"><img src="../assets/images/godown_btnhdpi.png"><span>Multiple Bets</span></a>
+            <section class="multctrls"  v-if="bet.mult_show">
+              <span>Multiple Bets</span>
+              <section class="multbtns">
+                <a href="javascript:;" @click="timesHandler" data-sum="-">-</a>
+                <b>{{bet.times}}</b>
+                <a href="javascript:;" @click="timesHandler" data-sum="+">+</a>
+                <span>Times</span>
+              </section>
             </section>
           </section>
         </section>
       </section>
+      <section class="btn-cont">
+        <a class="btn" @click="addAnother" v-if="total">Add another ticket</a>
+      </section>
+      <section class="bbar">
+        <section class="msg">Total:{{all}} Ticket</section>
+        <a href="javascript:;" class="btn" :class="all?'':'disable'" @click="submit">
+          <span>Place Bet</span>
+          <span>￡E {{all*2}}.00</span>
+        </a>
+      </section>
     </section>
-    <section class="btn-cont">
-      <a class="btn" @click="addAnother" v-if="total">Add another ticket</a>
-    </section>
-    <section class="bbar">
-      <section class="msg">Total:{{all}} Ticket</section>
-      <a href="javascript:;" class="btn" :class="all?'':'disable'" @click="submit">
-        <span>Place Bet</span>
-        <span>￡E {{all*2}}.00</span>
-      </a>
-    </section>
+
     <login ref="login" @logincallback="registerFunc"></login>
     <register ref="register" :user="initUserInfo"></register>
     <sidemenu ref="sidemenu" @login="loginFunc" :user="initUserInfo"></sidemenu>
@@ -76,6 +135,10 @@ function factorial(n){
 // (factorial(M)*N)/(6!*factorial(M-6))
 function createBalls(n){
   return Array.from({length:n}).map((item,i) =>{return {name:i+1,value:0}});
+}
+
+function toThousands(num){
+  return (num || 0).toString().replace(/(\d)(?=(?:\d{3})+$)/g, '$1,');
 }
 
 function betFactory(){
@@ -99,7 +162,9 @@ export default {
       bets:[betFactory()],
       curBet:0,
       termNo:0,
-      lotteryTime:Date.now()/1000
+      lotteryTime:Date.now()/1000,
+      lotteryStatus:0,
+      lotteryResult:{}
     }
   },
   components: {
@@ -108,6 +173,7 @@ export default {
     sidemenu: SideMenu
   },
   methods:{
+    toThousands:toThousands,
     selectball:function(e){
       let dataset = e.target.dataset;
       let curbet = this.bets[this.curBet];
@@ -211,7 +277,11 @@ export default {
     },
     lotteryTimestamp:function(){
       let dt = new Date(this.lotteryTime*1000);
-      return `${this.$t('calendar.month')[dt.getMonth()]} ${dt.getDate()}, ${dt.getFullYear()} ${dt.getHours()}:${dt.getMinutes()}`;
+      return `${this.$t('calendar.month')[dt.getMonth()]} ${this.nf(dt.getDate())}, ${dt.getFullYear()} ${this.nf(dt.getHours())}:${this.nf(dt.getMinutes())}`;
+    },
+    nextLottery:function(){
+      let dt = new Date(this.lotteryResult.nextStartTime*1000);
+      return `${this.$t('calendar.month')[dt.getMonth()]} ${this.nf(dt.getDate())}, ${dt.getFullYear()} ${this.nf(dt.getHours())}:${this.nf(dt.getMinutes())}`;
     }
   },
   mounted:function(){
@@ -231,28 +301,11 @@ export default {
       this.$refs.register.showLayer();
     }else{
       this.getUserInfo().then(response =>{
+        console.log(response)
         if(response.status == 1){
           this.initUserInfo = response.data;
           sessionStorage.user = JSON.stringify(this.initUserInfo);
 
-          //登录状态下，获取用户信息
-          this.$.ajax({
-            url:'http://manage.yubaxi.com/api/bets/info',
-            type:'get',
-            xhrFields:{
-              withCredentials:true
-            },
-            crossDomain:true
-          }).then(response =>{
-            if(response.status == 1){
-              this.lotteryTime = response.data.lotteryTime;
-              this.termNo = response.data.termNo;
-            }else{
-              alert("获取信息失败")
-            }
-
-          })
-          this.bets = localStorage.bets?JSON.parse(localStorage.bets):[betFactory()];
         }else{
           this.$refs.login.showLayer();
         }
@@ -262,6 +315,34 @@ export default {
       
     }
 
+    //获取用户信息
+    this.$.ajax({
+      url:'http://manage.yubaxi.com/api/bets/info',
+      type:'get',
+      xhrFields:{
+        withCredentials:true
+      },
+      crossDomain:true
+    }).then(response =>{
+      if(response.status == 1){
+        let data = response.data;
+        this.lotteryTime = data.lotteryTime;
+        this.termNo = data.termNo;
+        this.lotteryStatus = data.type;
+        this.lotteryResult = {
+          prizeInfo : data.prizeInfo,
+          redBall : data.redBall,
+          blueBall : data.blueBall,
+          nextStartTime :data.nextStartTime,
+          nextTermNo :data.nextTermNo
+        }
+      }else{
+        alert("获取信息失败")
+      }
+
+    })
+    
+    this.bets = localStorage.bets?JSON.parse(localStorage.bets):[betFactory()];
     
   }
 }

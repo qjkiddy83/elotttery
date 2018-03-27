@@ -8,7 +8,7 @@
       <ul>
         <li :class="betstatus==1?'active':''" data-type="1" @click="changeTab">Upcoming</li>
         <li :class="betstatus==2?'active':''" data-type="2" @click="changeTab">Winning</li>
-        <li :class="betstatus==3?'active':''" data-type="3" @click="changeTab">History</li>
+        <li :class="betstatus==0?'active':''" data-type="0" @click="changeTab">History</li>
       </ul>
     </section>
     <section class="scroller-cont">
@@ -39,16 +39,21 @@
           <dt class="win"><div><h4>You won</h4><strong>￡E {{record.win_amount}}</strong></div></dt>
         </dl>
       </section>
-      <section class="scroller" v-if="betstatus == 3">
+      <section class="scroller" v-if="betstatus == 0">
         <dl v-for="record in history.items">
-          <dt><div><span>Lottery Double Color Balls</span><em>{{timestamp(record.lottery_time*1000)}}</em></div></dt>
+          <dt><div><span>Lottery Double Color Balls</span><em v-if="record.betstatus != 1">{{timestamp(record.lottery_time*1000)}}</em></div></dt>
           <dd v-for="pbets in parseBets(record.bets)">
             <bets-balls :balls="pbets"></bets-balls>
             <section class="bet-info">
               <p><span>￡E {{pbets.count*2}}.00</span><span>x{{pbets.count}}</span></p>
             </section>
           </dd>
-          <dt class="win"><div><h4>You won</h4><strong>￡E {{record.win_amount}}</strong></div></dt>
+          <dt v-if="record.betstatus == 2" class="win"><div><h4>You won</h4><strong>￡E {{record.win_amount}}</strong></div></dt>
+
+          <dt class="upcoming" v-if="record.betstatus != 2">
+            <div><h4>Total:{{all(parseBets(record.bets))}} tickets</h4><strong>￡E {{all(parseBets(record.bets))*2}}.00</strong></div>
+            <div v-if="record.betstatus == 1">Drawing Time: {{timestamp(record.lottery_time*1000)}}</div>
+          </dt>
         </dl>
       </section>
       <infinite-loading @infinite="infiniteHandler" ref="infiniteLoading" spinner="circles">
@@ -82,7 +87,7 @@ export default {
   data () {
     return {
       betstatus:"1",
-      pageCount:10,
+      pageCount:50,
       upcoming:{
         page:1,
         items: []
@@ -99,7 +104,7 @@ export default {
   },
   computed:{
     curBets : function(){
-      return this.$data[({"1":"upcoming","2":"winning","3":"history"})[this.betstatus]];
+      return this.$data[({"1":"upcoming","2":"winning","0":"history"})[this.betstatus]];
     },
   },
   mounted() {
@@ -129,7 +134,7 @@ export default {
       return total;
     },
     infiniteHandler($state) {
-      let curBets = this.$data[({"1":"upcoming","2":"winning","3":"history"})[this.betstatus]]
+      let curBets = this.$data[({"1":"upcoming","2":"winning","0":"history"})[this.betstatus]]
       this.$.ajax({
         url:`http://manage.yubaxi.com/api/user/betinfo?page=${curBets.page}&pageCount=${this.pageCount}&betstatus=${this.betstatus}`,
         type:'get',

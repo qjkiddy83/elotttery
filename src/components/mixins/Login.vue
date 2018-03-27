@@ -29,7 +29,7 @@ export default {
       this.layerShow = true;
     },
     FBLogin:function(){
-      location.href = "http://manage.yubaxi.com/redirect"  
+      location.href = "http://manage.yubaxi.com/redirect";
     }
   },
   mounted:function(){

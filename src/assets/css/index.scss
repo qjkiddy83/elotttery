@@ -1,4 +1,4 @@
-.container{
+.mb166{
 	padding-bottom: 166px;
 }
 
@@ -53,6 +53,11 @@ header{
 		display: block;
 		color: rgb(234,85,20);
 		padding-left: 24px;
+	}
+	.status2{
+		width: 100%;
+		font-size:48px;
+		text-align: center;
 	}
 }
 .bets-selected{
@@ -187,6 +192,54 @@ header{
 				}
 			}
 		}
+	}
+}
+
+.prize-wrapper{
+	margin: 22px;
+	h2{
+		font-size: 48px;
+		color: #fff;
+		width: 100%;
+		display: flex;
+		font-weight: normal;
+		padding: 15px 25px;
+		span{
+			vertical-align: middle;
+			line-height: 48px;
+		}
+	}
+	.box{
+		background-color: #fff;
+		border-radius: 10px;
+		padding: 15px 20px;
+		dl{
+			line-height: 144px;
+			display: flex;
+			flex-direction: row;
+			font-size: 48px;
+			border-bottom: 1px solid #c8c8c8;
+			dt{
+				width: 250px;
+				text-align: center;
+				font-weight: bolder;
+				border-right: 1px solid #c8c8c8;
+			}
+			dd{
+				font-weight: lighter;
+				padding-left: 20px;
+			}
+			&:last-child{
+				border-bottom: 0;
+			}
+		}
+	}
+	.tip{
+		font-size: 48px;
+		line-height: 72px;
+		text-align: center;
+		color: #f5b72b;
+		margin-top: 50px;
 	}
 }
 

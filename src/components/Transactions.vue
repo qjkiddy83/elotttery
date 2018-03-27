@@ -40,7 +40,7 @@ export default {
     return {
       items: [],
       page:1,
-      pageCount:10
+      pageCount:50
     }
   },
   mounted() {

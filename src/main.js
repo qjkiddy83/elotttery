@@ -29,6 +29,9 @@ const i18n = new VueI18n({
 Vue.config.productionTip = false
 import $ from 'jquery';
 Vue.prototype.$ = $;
+Vue.prototype.nf = function(num){
+  return num<10?`0${num}`:num;
+}
 
 /* eslint-disable no-new */
 new Vue({

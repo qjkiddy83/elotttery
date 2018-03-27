@@ -14,7 +14,7 @@ export default {
   props:["balls"],
   computed:{
     decodeBalls:function(){
-      console.log(this.balls)
+      // console.log(this.balls)
       return JSON.parse(this.balls);
     }
   }
