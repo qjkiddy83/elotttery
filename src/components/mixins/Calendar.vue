@@ -7,7 +7,7 @@
 </template>
 <script>
 let now = (new Date()).getFullYear();
-let years = Array.from({length:now-1900}).map((item,i) => 1900+i);
+let years = Array.from({length:now-1900+1}).map((item,i) => 1900+i);
 let is_leap = function(now){
   return now%100==0?(now%400==0?1:0):(now%4==0?1:0)
 };

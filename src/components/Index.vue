@@ -138,7 +138,12 @@ function createBalls(n){
 }
 
 function toThousands(num){
-  return (num || 0).toString().replace(/(\d)(?=(?:\d{3})+$)/g, '$1,');
+  let _num = String(num).split('.');
+  let res = (_num[0] || 0).toString().replace(/(\d)(?=(?:\d{3})+$)/g, '$1,');
+  if(_num[1]){
+    res += '.'+_num[1];
+  }
+  return res;
 }
 
 function betFactory(){
@@ -285,14 +290,14 @@ export default {
     }
   },
   mounted:function(){
-    let now = Date.now()/1000;
+    let now = parseInt(Date.now()/1000);
     let oqs = this.getQs();
     this.curBet = this.bets.length-1;
     // this.$refs.login.showLayer();
     // this.$refs.register.showLayer();
     if(oqs.auth){
       this.initUserInfo = Object.assign({
-        gender:'male',
+        gender:1,
         birthday:now,
         phone:'',
         fullname:'',
@@ -301,7 +306,7 @@ export default {
       this.$refs.register.showLayer();
     }else{
       this.getUserInfo().then(response =>{
-        console.log(response)
+        // console.log(response)
         if(response.status == 1){
           this.initUserInfo = response.data;
           sessionStorage.user = JSON.stringify(this.initUserInfo);

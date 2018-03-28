@@ -58,12 +58,14 @@
   </section>
 </template>
 <script>
+import queryParse from './queryParse';
 import Calendar from './Calendar';
 
 export default {
   name: 'Register',
+  mixins:[queryParse],
   components:{
-    calendar:Calendar
+    calendar:Calendar,
   },
   data () {
     return {
@@ -81,6 +83,7 @@ export default {
     },
     stepChange:function(e){
       let toStep = e.target.dataset.step;
+      let qs = this.getQs();
       if(toStep === "submit"){
         if(!this.user.fullname){
           alert('fullname is required')
@@ -98,6 +101,9 @@ export default {
           idnumber: this.user.idnumber,
           nickname: this.user.nickname
         });
+        if(qs.auth){
+          _user.auth = qs.auth
+        }
         this.$.ajax({
           url : 'http://manage.yubaxi.com/api/updateUserInfo',
           data : _user,
@@ -132,7 +138,7 @@ export default {
       }
     },
     birthchange:function(year,month,date){
-      console.log(year,month,date)
+      // console.log(year,month,date)
       this.user.birthday = new Date([year,month+1,date].join('-')).getTime()/1000
     }
   },

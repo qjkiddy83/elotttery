@@ -30,6 +30,7 @@ export default {
     },
     FBLogin:function(){
       location.href = "http://manage.yubaxi.com/redirect";
+      this.layerShow = false;
     }
   },
   mounted:function(){
