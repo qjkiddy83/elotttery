@@ -24,7 +24,6 @@ module.exports = {
     tip:'New account will be created on your first login'
   },
   user:{
-    title:'New Account',
     nickname:'Nickname',
     gender:'Gender',
     gender_male:'Male',
@@ -36,6 +35,7 @@ module.exports = {
     id_number:'ID Number',
   },
   register:{
+    title:'New Account',
     prev:'Prev',
     next:'Next',
     submit:'Submit',

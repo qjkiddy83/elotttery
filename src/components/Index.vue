@@ -115,9 +115,12 @@
       </section>
     </section>
 
-    <login ref="login" @logincallback="registerFunc"></login>
+    <login ref="login" @logincallback="showloading"></login>
     <register ref="register" :user="initUserInfo"></register>
     <sidemenu ref="sidemenu" @login="loginFunc" :user="initUserInfo"></sidemenu>
+    <section class="loading" v-if="loading">
+      <img src="../assets/images/loading.gif" >
+    </section>
   </div>
 </template>
 
@@ -129,6 +132,7 @@ import SideMenu from './mixins/SideMenu';
 import queryParse from './mixins/queryParse';
 import UserInfo from './mixins/UserInfo';
 import lang from '../langs/index';
+
 
 function factorial(n){
     return n > 1 ? n * factorial(n-1) : 1;
@@ -164,6 +168,7 @@ export default {
   mixins:[queryParse,UserInfo],
   data () {
     return {
+      loading:false,
       initUserInfo:{},
       bets:[betFactory()],
       curBet:0,
@@ -267,6 +272,9 @@ export default {
     },
     registerFunc:function(){
       this.$refs.register.showLayer();
+    },
+    showloading:function(){
+      this.loading = true;
     }
   },
   computed:{
@@ -307,6 +315,7 @@ export default {
         idnumber:''
       },oqs);
       this.$refs.register.showLayer();
+      this.loading = false;
     }else{
       this.getUserInfo().then(response =>{
         // console.log(response)
@@ -317,6 +326,7 @@ export default {
         }else{
           this.$refs.login.showLayer();
         }
+        this.loading = false;
         // console.log(response)
       })
 
@@ -351,6 +361,21 @@ export default {
     })
     
     this.bets = localStorage.bets?JSON.parse(localStorage.bets):[betFactory()];
+
+    //登录回调
+    let self = this;
+    window.loginCallback = function(url) {
+      // self.$refs.login.closeLayer();
+      // self.loading = true;
+      setTimeout(() =>{
+        self.loading = false;
+        if(url.indexOf('auth')<0){
+          location.reload();
+        }else{
+          location.href = url;
+        }
+      },500)
+    }
     
   }
 }
