@@ -8,7 +8,7 @@
       <section class="card">
         <ul>
           <li><span>{{$t("settings.enable_notification")}}</span><a class="swither"><input type="checkbox" name="notification" v-model="notification"><i></i></a></li>
-          <li><span>{{$t("settings.language")}}</span><select v-model="language"><option value="1">Auto</option><option value="2">English</option><option value="3">اللغة العربية</option></select></li>
+          <li><span>{{$t("settings.language")}}</span><select v-model="language"><option v-for="lang in langlist" :value="lang.value">{{lang.name}}</option></select></li>
         </ul>
       </section>
       <section class="card">
@@ -27,6 +27,8 @@
 <script>
 import back from './mixins/back';
 import UserInfo from './mixins/UserInfo';
+import lang from '../langs/index';
+
 export default {
   name: 'Settings',
   components: {
@@ -37,7 +39,8 @@ export default {
     return {
       user:{},
       notification:0,
-      language:0
+      language:0,
+      langlist : lang.langlist
     }
   },
   mounted:function(){

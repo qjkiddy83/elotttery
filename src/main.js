@@ -7,26 +7,12 @@ import router from './router'
 import VueI18n from 'vue-i18n';
 Vue.use(VueI18n);
 
-import enlang from './langs/en';
-import arlang from './langs/ar';
 
-const messages = {
-  auto: enlang,
-  en: enlang,
-  ar: arlang
-}
-
-function getLang(){//默认语言
-  return messages[navigator.language]?navigator.language:'en';
-}
-
-const i18n = new VueI18n({
-  //定义默认语言
-  locale: getLang(), 
-  messages
-})
+import lang from './langs/index';
+const i18n = new VueI18n(lang.init);
 
 Vue.config.productionTip = false
+
 import $ from 'jquery';
 Vue.prototype.$ = $;
 Vue.prototype.nf = function(num){

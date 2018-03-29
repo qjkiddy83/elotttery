@@ -2,17 +2,17 @@
   <div class="container">
     <header>
       <back></back>
-      <h1>My Wallet</h1>
+      <h1>{{$t('wallet.title')}}</h1>
     </header>
     <section class="card">
-      <h3>Balance</h3>
+      <h3>{{$t('wallet.balance')}}</h3>
       <strong><i>￡E </i>{{user.balance}}</strong>
     </section>
     <section class="list">
       <ul>
-        <li><router-link class="mn-deposit" :to='{name:"deposit",params:{title:"Deposit"}}'>Deposit</router-link></li>
-        <li><router-link class="mn-withdraw" :to='{name:"deposit",params:{title:"Withdraw"}}'>Withdraw</router-link></li>
-        <li><router-link class="mn-transactions" to="transactions">Transactions</router-link></li>
+        <li><router-link class="mn-deposit" to='deposit'>{{$t('wallet.deposit')}}</router-link></li>
+        <li><router-link class="mn-withdraw" to='deposit'>{{$t('wallet.withdraw')}}</router-link></li>
+        <li><router-link class="mn-transactions" to="transactions">{{$t('wallet.transactions')}}</router-link></li>
       </ul>
     </section>
   </div>

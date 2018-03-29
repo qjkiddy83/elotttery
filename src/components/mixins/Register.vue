@@ -2,57 +2,57 @@
   <section class="layer" v-if="layerShow">
     <section class="content">
       <a href="javascript:;" class="close" @click="closeLayer"></a>
-      <h3>New Account</h3>
+      <h3>{{$t('register.title')}}</h3>
       <form>
         <section v-if="step == 1">
           <dl>
-            <dt>Nickname <span>*</span></dt>
+            <dt>{{$t('user.nickname')}} <span>*</span></dt>
             <dd><input type="text" name="" v-model="user.nickname"></dd>
           </dl>
           <dl>
-            <dt>Gender <span>*</span></dt>
-            <dd><label class="radio"><input type="radio" name="gender" v-model="user.gender" value="1"><span><em></em>Male</span></label><label class="radio"><input type="radio" name="gender" v-model="user.gender" value="2"><span><em></em>Female</span></label></dd>
+            <dt>{{$t('user.gender')}} <span>*</span></dt>
+            <dd><label class="radio"><input type="radio" name="gender" v-model="user.gender" value="1"><span><em></em>{{$t('user.gender_male')}}</span></label><label class="radio"><input type="radio" name="gender" v-model="user.gender" value="2"><span><em></em>{{$t('user.gender_female')}}</span></label></dd>
           </dl>
           <dl>
-            <dt>Date of Birth <span>*</span></dt>
+            <dt>{{$t('user.date_of_birth')}} <span>*</span></dt>
             <calendar @birthchange="birthchange" :initdate="user.birthday"></calendar>
           </dl>
           <section class="ftbar">
-            <a href="javascript:;" class="next" @click="stepChange" data-step="2">Next</a>
+            <a href="javascript:;" class="next" @click="stepChange" data-step="2">{{$t('register.next')}}</a>
           </section>
         </section>
         <section v-if="step == 2">
           <dl>
-            <dt>Email <span>*</span></dt>
+            <dt>{{$t('user.email')}} <span>*</span></dt>
             <dd><input type="text" name="" v-model="user.email"></dd>
           </dl>
           <dl>
-            <dt>Mobile Phone <span>*</span></dt>
+            <dt>{{$t('user.mobile_phone')}} <span>*</span></dt>
             <dd><input type="text" name="" v-model="user.phone"></dd>
           </dl>
           <section class="ftbar">
-            <a href="javascript:;" class="prev" @click="stepChange" data-step="1">Prev</a>
-            <a href="javascript:;" class="next" @click="stepChange" data-step="3">Next</a>
+            <a href="javascript:;" class="prev" @click="stepChange" data-step="1">{{$t('register.prev')}}</a>
+            <a href="javascript:;" class="next" @click="stepChange" data-step="3">{{$t('register.next')}}</a>
           </section>
         </section>
         <section v-if="step == 3">
           <dl>
-            <dt>Full Name <span>*</span></dt>
+            <dt>{{$t('user.full_name')}} <span>*</span></dt>
             <dd><input type="text" name="" v-model="user.fullname"></dd>
           </dl>
           <dl>
-            <dt>ID Number <span>*</span></dt>
+            <dt>{{$t('user.id_number')}} <span>*</span></dt>
             <dd><input type="text" name="" v-model="user.idnumber"></dd>
           </dl>
-          <p class="tip">Your full name and ID number will be used in withdrawals, make sure your input conforms your ID card please.</p>
+          <p class="tip">{{$t('register.tip')}}</p>
           <section class="ftbar">
-            <a href="javascript:;" class="prev" @click="stepChange" data-step="2">Prev</a>
-            <a href="javascript:;" class="next" @click="stepChange" data-step="submit">Submit</a>
+            <a href="javascript:;" class="prev" @click="stepChange" data-step="2">{{$t('register.prev')}}</a>
+            <a href="javascript:;" class="next" @click="stepChange" data-step="submit">{{$t('register.submit')}}</a>
           </section>
         </section>
       </form>
       <section class="agreetip" v-if="step == 3">
-        By submitting this form, you are agreeing with ELOL's <a href="javascript:;">Terms of Service</a> and <a href="javascript:;">Privacy Policy</a>
+        {{$t('register.agreetip[0]')}}<a href="javascript:;" class="w-link">{{$t('register.terms_of_service')}}</a>{{$t('register.agreetip[1]')}}<a href="javascript:;" class="w-link">{{$t('register.privacy_policy')}}</a>
       </section>
     </section>
   </section>
@@ -149,6 +149,12 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
+<style>
+  .w-link{
+    text-decoration: underline;
+    color: #fff;
+  }
+</style>
 <style lang="scss" scoped>
   .content{
     height: 1174px;

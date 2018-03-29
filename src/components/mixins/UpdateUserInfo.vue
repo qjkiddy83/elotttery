@@ -5,35 +5,35 @@
       <form>
         <section>
           <dl v-if='updatename=="nickname"'>
-            <dt>Nickname</dt>
+            <dt>{{$t('user.nickname')}}</dt>
             <dd><input type="text" name="" v-model="user.nickname"></dd>
           </dl>
           <dl v-if='updatename=="gender"'>
-            <dt>Gender</dt>
-            <dd><label class="radio"><input type="radio" name="gender" v-model="user.gender" value="1"><span><em></em>Male</span></label><label class="radio"><input type="radio" name="gender" v-model="user.gender" value="2"><span><em></em>Female</span></label></dd>
+            <dt>{{$t('user.gender')}}</dt>
+            <dd><label class="radio"><input type="radio" name="gender" v-model="user.gender" value="1"><span><em></em>{{$t('user.gender_male')}}</span></label><label class="radio"><input type="radio" name="gender" v-model="user.gender" value="2"><span><em></em>{{$t('user.gender_female')}}</span></label></dd>
           </dl>
           <dl v-if='updatename=="birthday"'>
-            <dt>Date of Birth</dt>
+            <dt>{{$t('user.date_of_birth')}}</dt>
             <calendar @birthchange="birthchange" :initdate="user.birthday"></calendar>
           </dl>
           <dl v-if='updatename=="email"'>
-            <dt>Email</dt>
+            <dt>{{$t('user.email')}}</dt>
             <dd><input type="text" name="" v-model="user.email"></dd>
           </dl>
           <dl v-if='updatename=="phone"'>
-            <dt>Mobile Phone</dt>
+            <dt>{{$t('user.mobile_phone')}}</dt>
             <dd><input type="text" name="" v-model="user.phone"></dd>
           </dl>
           <dl v-if='updatename=="fullname"'>
-            <dt>Full Name</dt>
+            <dt>{{$t('user.full_name')}}</dt>
             <dd><input type="text" name="" v-model="user.fullname"></dd>
           </dl>
           <dl v-if='updatename=="idnumber"'>
-            <dt>ID Number</dt>
+            <dt>{{$t('user.id_number')}}</dt>
             <dd><input type="text" name="" v-model="user.idnumber"></dd>
           </dl>
           <section class="ftbar">
-            <a href="javascript:;" class="next" @click="submit">OK</a>
+            <a href="javascript:;" class="next" @click="submit">{{$t('register.ok')}}</a>
           </section>
         </section>
       </form>

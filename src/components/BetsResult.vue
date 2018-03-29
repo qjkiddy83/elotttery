@@ -2,21 +2,21 @@
   <div class="container">
     <header>
       <back></back>
-      <h1>Review your bet</h1>
+      <h1>{{$t('betsresult.title')}}</h1>
     </header>
     <section class="content">
-      <h2>Bet summary</h2>
+      <h2>{{$t('betsresult.bet_summary')}}</h2>
       <section class="result-wrapper">
         <img src="../assets/images/tmp.jpg" width="100%" />
-        <p>Your bet has been submitted. Thanks for your contribution to Egyptian philanthropy.</p>
-        <i>Good luck for you!</i>
+        <p>{{$t('betsresult.succ_msg')}}</p>
+        <i>{{$t('betsresult.goodluck')}}</i>
       </section>
       <section class="btn-cont">
         <div>
-          <router-link class="btn" to="index">Continue betting</router-link>
+          <router-link class="btn" to="index">{{$t('betsresult.continue_betting')}}</router-link>
         </div>
         <div>
-          <router-link class="btn" to="bets">View my bets</router-link>
+          <router-link class="btn" to="bets">{{$t('betsresult.view_bets')}}</router-link>
         </div>
       </section>
     </section>
@@ -33,7 +33,6 @@ export default {
   },
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
     }
   },
   methods:{

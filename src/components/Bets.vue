@@ -2,19 +2,19 @@
   <div class="container">
     <header>
       <back></back>
-      <h1>My Bets</h1>
+      <h1>{{$t('bets.title')}}</h1>
     </header>
     <section class="tabs">
       <ul>
-        <li :class="betstatus==1?'active':''" data-type="1" @click="changeTab">Upcoming</li>
-        <li :class="betstatus==2?'active':''" data-type="2" @click="changeTab">Winning</li>
-        <li :class="betstatus==0?'active':''" data-type="0" @click="changeTab">History</li>
+        <li :class="betstatus==1?'active':''" data-type="1" @click="changeTab">{{$t('bets.upcoming')}}</li>
+        <li :class="betstatus==2?'active':''" data-type="2" @click="changeTab">{{$t('bets.winning')}}</li>
+        <li :class="betstatus==0?'active':''" data-type="0" @click="changeTab">{{$t('bets.history')}}</li>
       </ul>
     </section>
     <section class="scroller-cont">
       <section class="scroller" v-if="betstatus == 1">
         <dl v-for="record in upcoming.items">
-          <dt><span>Lottery Double Color Balls</span></dt>
+          <dt><span>{{$t('bets.lottery_double_color_balls')}}</span></dt>
           <dd v-for="pbets in parseBets(record.bets)">
             <bets-balls :balls="pbets"></bets-balls>
             <section class="bet-info">
@@ -22,14 +22,14 @@
             </section>
           </dd>
           <dt class="upcoming">
-            <div><h4>Total:{{all(parseBets(record.bets))}} tickets</h4><strong>￡E {{all(parseBets(record.bets))*2}}.00</strong></div>
-            <div>Drawing Time: {{timestamp(record.lottery_time*1000)}}</div>
+            <div><h4>{{$t('bets.total_tickets',{total:all(parseBets(record.bets))})}}</h4><strong>￡E {{all(parseBets(record.bets))*2}}.00</strong></div>
+            <div>{{$t('bets.drawing_time')}}: {{timestamp(record.lottery_time*1000)}}</div>
           </dt>
         </dl>
       </section>
       <section class="scroller" v-if="betstatus == 2">
         <dl v-for="record in winning.items">
-          <dt><div><span>Lottery Double Color Balls</span><em>{{timestamp(record.lottery_time*1000)}}</em></div></dt>
+          <dt><div><span>{{$t('bets.lottery_double_color_balls')}}</span><em>{{timestamp(record.lottery_time*1000)}}</em></div></dt>
           <dd v-for="pbets in parseBets(record.bets)">
             <bets-balls :balls="pbets"></bets-balls>
             <section class="bet-info">
@@ -41,7 +41,7 @@
       </section>
       <section class="scroller" v-if="betstatus == 0">
         <dl v-for="record in history.items">
-          <dt><div><span>Lottery Double Color Balls</span><em v-if="record.betstatus != 1">{{timestamp(record.lottery_time*1000)}}</em></div></dt>
+          <dt><div><span>{{$t('bets.lottery_double_color_balls')}}</span><em v-if="record.betstatus != 1">{{timestamp(record.lottery_time*1000)}}</em></div></dt>
           <dd v-for="pbets in parseBets(record.bets)">
             <bets-balls :balls="pbets"></bets-balls>
             <section class="bet-info">
@@ -51,8 +51,8 @@
           <dt v-if="record.betstatus == 2" class="win"><div><h4>You won</h4><strong>￡E {{record.win_amount}}</strong></div></dt>
 
           <dt class="upcoming" v-if="record.betstatus != 2">
-            <div><h4>Total:{{all(parseBets(record.bets))}} tickets</h4><strong>￡E {{all(parseBets(record.bets))*2}}.00</strong></div>
-            <div v-if="record.betstatus == 1">Drawing Time: {{timestamp(record.lottery_time*1000)}}</div>
+            <div><h4>{{$t('bets.total_tickets',{total:all(parseBets(record.bets))})}}</h4><strong>￡E {{all(parseBets(record.bets))*2}}.00</strong></div>
+            <div v-if="record.betstatus == 1">{{$t('bets.drawing_time')}}: {{timestamp(record.lottery_time*1000)}}</div>
           </dt>
         </dl>
       </section>

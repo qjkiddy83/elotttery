@@ -2,13 +2,13 @@
   <section class="layer" v-if="layerShow">
     <section class="content">
       <a href="javascript:;" class="close" @click="closeLayer"></a>
-      <h3>Log In</h3>
+      <h3>{{$t('login.title')}}</h3>
       <section class="profile"><img src="../../assets/images/nopic_iconhdpi.png"></section>
       <section class="btns">
         <a href="javascript:;" @click="FBLogin"><img src="../../assets/images/facebook_btnhdpi.png"></a>
         <a href="javascript:;"><img src="../../assets/images/gmail_btnhdpi.png"></a>
       </section>
-      <p>New account will be created on your first login</p>
+      <p>{{$t('login.tip')}}</p>
     </section>
   </section>
 </template>

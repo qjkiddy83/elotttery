@@ -2,18 +2,18 @@
   <div class="container">
     <header>
       <back></back>
-      <h1>My Profile</h1>
+      <h1>{{$t('profile.title')}}</h1>
     </header>
     <section class="list">
       <ul>
-        <li><span>Profile Photo</span><img :src="user.avatar" width="144" height="144" class="avatar"></li>
-        <li><span>Nickname</span><a href="javascript:;" @click="update" data-upname="nickname">{{user.nickname}}</a></li>
-        <li><span>Gender</span><a href="javascript:;" @click="update" data-upname="gender">{{gender}}</a></li>
-        <li><span>Date of Birth</span><a href="javascript:;" @click="update" data-upname="birthday">{{birth}}</a></li>
-        <li><span>Email</span><a href="javascript:;" @click="update" data-upname="email">{{user.email}}</a></li>
-        <li><span>Mobile Phone</span><a href="javascript:;" @click="update" data-upname="phone">{{user.phone}}</a></li>
-        <li><span>Full Name</span><a href="javascript:;" @click="update" data-upname="fullname">{{user.fullname}}</a></li>
-        <li><span>ID Number</span><a href="javascript:;" @click="update" data-upname="idnumber">{{user.idnumber}}</a></li>
+        <li><span>{{$t('profile.profile_photo')}}</span><img :src="user.avatar" width="144" height="144" class="avatar"></li>
+        <li><span>{{$t('user.nickname')}}</span><a href="javascript:;" @click="update" data-upname="nickname">{{user.nickname}}</a></li>
+        <li><span>{{$t('user.gender')}}</span><a href="javascript:;" @click="update" data-upname="gender">{{gender}}</a></li>
+        <li><span>{{$t('user.date_of_birth')}}</span><a href="javascript:;" @click="update" data-upname="birthday">{{birth}}</a></li>
+        <li><span>{{$t('user.email')}}</span><a href="javascript:;" @click="update" data-upname="email">{{user.email}}</a></li>
+        <li><span>{{$t('user.mobile_phone')}}</span><a href="javascript:;" @click="update" data-upname="phone">{{user.phone}}</a></li>
+        <li><span>{{$t('user.full_name')}}</span><a href="javascript:;" @click="update" data-upname="fullname">{{user.fullname}}</a></li>
+        <li><span>{{$t('user.id_number')}}</span><a href="javascript:;" @click="update" data-upname="idnumber">{{user.idnumber}}</a></li>
       </ul>
     </section>
     <update-user-info :user="user" ref="updateUserInfo"></update-user-info>

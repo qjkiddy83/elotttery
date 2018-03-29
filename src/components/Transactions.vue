@@ -2,14 +2,14 @@
   <div class="container">
     <header>
       <back></back>
-      <h1>Transactions</h1>
+      <h1>{{$t('transactions.title')}}</h1>
     </header>
     <section class="scroller-cont">
       <section class="scroller">
         <ol>
           <li v-for="(item, index) in items" class="record">
             <p><span>{{transactionType(item.type)}}</span><span>{{timestamp(item.updated_at)}}</span></p>
-            <p><span>balance:{{item.balance}}</span><span><b>{{item.amount}}</b></span></p>
+            <p><span>{{$t('transactions.balance')}}:{{toThousands(item.balance)}}</span><span><b>{{toThousands(item.amount)}}</b></span></p>
           </li>
         </ol>
         <infinite-loading @infinite="infiniteHandler" spinner="circles">
@@ -29,7 +29,15 @@
 import back from './mixins/back';
 import InfiniteLoading from 'vue-infinite-loading';
 
-let n = 0;
+function toThousands(num){
+  let _num = String(num).split('.');
+  let res = (_num[0] || 0).toString().replace(/(\d)(?=(?:\d{3})+$)/g, '$1,');
+  if(_num[1]){
+    res += '.'+_num[1];
+  }
+  return res;
+}
+
 export default {
   name: 'Transactions',
   components: {
@@ -68,6 +76,7 @@ export default {
       let dt = new Date(time);
       return `${this.$t('calendar.month')[dt.getMonth()]} ${dt.getDate()}, ${dt.getFullYear()} ${dt.getHours()}:${dt.getMinutes()}:${dt.getSeconds()}`; 
     },
+    toThousands:toThousands,
     infiniteHandler($state) {
       this.$.ajax({
         url:`http://manage.yubaxi.com/api/user/transactions?page=${this.page}&pageCount=${this.pageCount}`,

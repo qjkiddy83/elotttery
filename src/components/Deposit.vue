@@ -2,12 +2,12 @@
   <div class="container">
     <header>
       <back></back>
-      <h1>{{title}}</h1>
+      <h1>{{$t('deposit.title')}}</h1>
     </header>
     <section class="article">
-      <p>Online deposit / withdrawal is under construction.Contact our customer service for offline deposit / withdrawal please.Your user number will be asked to identify your account</p>
+      <p>{{$t('deposit.msg')}}</p>
       <dl>
-        <dt>Your User Number</dt>
+        <dt>{{$t('deposit.user_number')}}</dt>
         <dd><a href="tel://1234567890"></a>1234567890</dd>
       </dl>
     </section>
@@ -23,12 +23,9 @@ export default {
   },
   data () {
     return {
-      title: 'Deposit'
     }
   },
   mounted:function(){
-    if(this.$route.params.title)
-    this.title = this.$route.params.title;
   }
 }
 </script>

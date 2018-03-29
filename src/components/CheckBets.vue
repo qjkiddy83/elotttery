@@ -3,23 +3,23 @@
     <header>
       <!-- <a class="back" @click="back"></a> -->
       <back></back>
-      <h1>Review your bet</h1>
+      <h1>{{$t('checkbets.title')}}</h1>
     </header>
     <section class="content">
-      <h2>Bet summary</h2>
+      <h2>{{$t('checkbets.bet_summary')}}</h2>
       <section class="cont-wrapper">
         <ul>
-          <li><label>Game:</label><p>Lottery-Double Color Balls</p></li>
-          <li><label>Term No.:</label><p>{{termNo}}</p></li>
-          <li><label>Drawing Time:</label><p>{{lotteryTimestamp}}</p></li>
-          <li><label>Tickets:</label><p>{{all}}</p></li>
+          <li><label>{{$t('checkbets.game')}}:</label><p>{{$t('checkbets.lottery_double_color_balls')}}</p></li>
+          <li><label>{{$t('checkbets.term_no')}}:</label><p>{{termNo}}</p></li>
+          <li><label>{{$t('checkbets.drawing_time')}}:</label><p>{{lotteryTimestamp}}</p></li>
+          <li><label>{{$t('checkbets.tickets')}}:</label><p>{{all}}</p></li>
           <!-- <li><label>Amount:</label><p>￡E {{user.balance}}</p></li>
           <li><label>Balance:</label><p>{{balance}}.00</p></li> -->
-          <li class="total"><label>Total:</label><p>￡E {{all*2}}.00</p></li>
+          <li class="total"><label>{{$t('checkbets.total')}}:</label><p>￡E {{all*2}}.00</p></li>
         </ul>
       </section>
       <section class="btn-cont">
-        <a class="btn" :class="balance>0?'':'disable'" @click="submit">Yes, I confirm this bet</a>
+        <a class="btn" :class="balance>0?'':'disable'" @click="submit">{{balance>0?$t('checkbets.confirm_bet'):$t('checkbets.insufficient_balance')}}</a>
       </section>
     </section>
   </div>

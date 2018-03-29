@@ -7,10 +7,10 @@
     <!-- 等待开奖 -->
     <section v-if="lotteryStatus==2">
       <section class="notice">
-        <section class="status2">Upcoming lottery time: {{lotteryTimestamp}}</section>
+        <section class="status2">{{$t('index.upcoming_lottery_time')}}: {{lotteryTimestamp}}</section>
       </section>
       <section class="balls-wrapper">
-          <h2>Result</h2>
+          <h2>{{$t('index.result')}}</h2>
           <ul class="balls">
             <li class="ball active red">?</li>
             <li class="ball active red">?</li>
@@ -22,48 +22,48 @@
           </ul>
       </section>
       <section class="prize-wrapper">
-        <h2>Winings</h2>
+        <h2>{{$t('index.winnings')}}</h2>
         <section class="box">
-          <dl><dt>1st Prize</dt><dd>￡E ?????({{toThousands(lotteryResult.prizeInfo.maximum)}} maximum)</dd></dl>
-          <dl><dt>2st Prize</dt><dd>￡E ?????</dd></dl>
-          <dl><dt>3st Prize</dt><dd>￡E {{toThousands(lotteryResult.prizeInfo.prize3)}}</dd></dl>
-          <dl><dt>4st Prize</dt><dd>￡E {{toThousands(lotteryResult.prizeInfo.prize4)}}</dd></dl>
-          <dl><dt>5st Prize</dt><dd>￡E {{toThousands(lotteryResult.prizeInfo.prize5)}}</dd></dl>
-          <dl><dt>6st Prize</dt><dd>￡E {{toThousands(lotteryResult.prizeInfo.prize6)}}</dd></dl>
+          <dl><dt>{{$t('index.nst_prize',{num:1})}}</dt><dd>￡E ?????({{toThousands(lotteryResult.prizeInfo.maximum)}} {{$t("index.maximum")}})</dd></dl>
+          <dl><dt>{{$t('index.nst_prize',{num:2})}}</dt><dd>￡E ?????</dd></dl>
+          <dl><dt>{{$t('index.nst_prize',{num:3})}}</dt><dd>￡E {{toThousands(lotteryResult.prizeInfo.prize3)}}</dd></dl>
+          <dl><dt>{{$t('index.nst_prize',{num:4})}}</dt><dd>￡E {{toThousands(lotteryResult.prizeInfo.prize4)}}</dd></dl>
+          <dl><dt>{{$t('index.nst_prize',{num:5})}}</dt><dd>￡E {{toThousands(lotteryResult.prizeInfo.prize5)}}</dd></dl>
+          <dl><dt>{{$t('index.nst_prize',{num:6})}}</dt><dd>￡E {{toThousands(lotteryResult.prizeInfo.prize6)}}</dd></dl>
         </section>
-        <section class="tip">Term {{lotteryResult.nextTermNo}} is waiting for the draw. <br>Who is the next millionaire?</section>
+        <section class="tip" v-html="$t('index.next_tip',{nextTermNo:lotteryResult.nextTermNo})"></section>
       </section>
     </section>
     <!-- 显示开奖结果 -->
     <section v-else-if="lotteryStatus==3">
       <section class="notice">
-        <section class="status2">Lottery time: {{lotteryTimestamp}}</section>
+        <section class="status2">{{$t('index.lottery_time')}}: {{lotteryTimestamp}}</section>
       </section>
       <section class="balls-wrapper">
-          <h2>Result</h2>
+          <h2>{{$t('index.result')}}</h2>
           <ul class="balls">
             <li v-for="ball in lotteryResult.redBall" class="ball active red">{{ball}}</li>
             <li class="ball active blue">{{lotteryResult.blueBall}}</li>
           </ul>
       </section>
       <section class="prize-wrapper">
-        <h2>Winings</h2>
+        <h2>{{$t('index.winnings')}}</h2>
         <section class="box">
-          <dl><dt>1st Prize</dt><dd>￡E {{toThousands(lotteryResult.prizeInfo.prize1)}}</dd></dl>
-          <dl><dt>2st Prize</dt><dd>￡E {{toThousands(lotteryResult.prizeInfo.prize2)}}</dd></dl>
-          <dl><dt>3st Prize</dt><dd>￡E {{toThousands(lotteryResult.prizeInfo.prize3)}}</dd></dl>
-          <dl><dt>4st Prize</dt><dd>￡E {{toThousands(lotteryResult.prizeInfo.prize4)}}</dd></dl>
-          <dl><dt>5st Prize</dt><dd>￡E {{toThousands(lotteryResult.prizeInfo.prize5)}}</dd></dl>
-          <dl><dt>6st Prize</dt><dd>￡E {{toThousands(lotteryResult.prizeInfo.prize6)}}</dd></dl>
+          <dl><dt>{{$t('index.nst_prize',{num:1})}}</dt><dd>￡E {{toThousands(lotteryResult.prizeInfo.prize1)}}</dd></dl>
+          <dl><dt>{{$t('index.nst_prize',{num:2})}}</dt><dd>￡E {{toThousands(lotteryResult.prizeInfo.prize2)}}</dd></dl>
+          <dl><dt>{{$t('index.nst_prize',{num:3})}}</dt><dd>￡E {{toThousands(lotteryResult.prizeInfo.prize3)}}</dd></dl>
+          <dl><dt>{{$t('index.nst_prize',{num:4})}}</dt><dd>￡E {{toThousands(lotteryResult.prizeInfo.prize4)}}</dd></dl>
+          <dl><dt>{{$t('index.nst_prize',{num:5})}}</dt><dd>￡E {{toThousands(lotteryResult.prizeInfo.prize5)}}</dd></dl>
+          <dl><dt>{{$t('index.nst_prize',{num:6})}}</dt><dd>￡E {{toThousands(lotteryResult.prizeInfo.prize6)}}</dd></dl>
         </section>
-        <section class="tip">Next term will be opened on {{nextLottery}}.</section>
+        <section class="tip">{{$t('index.next_lottery',{nextLottery:nextLottery})}}</section>
       </section>
     </section>
     <!-- 下注阶段 -->
     <section v-else-if="lotteryStatus==1" class="mb166">
       <section class="notice">
-        <p><span>Upcoming lottery time</span><span>{{lotteryTimestamp}}</span></p>
-        <strong>Choose 6 red balls + 1 blue balls to hit 5,000,000</strong>
+        <p><span>{{$t('index.upcoming_lottery_time')}}</span><span>{{lotteryTimestamp}}</span></p>
+        <strong>{{$t('index.hitmsg')}}</strong>
       </section>
       <section class="bets-selected" v-for="(bet,betindex) in bets" >
         <section class="bet-group" v-if="curBet != betindex">
@@ -90,26 +90,26 @@
             </li>
           </ul>
           <section class="mult">
-            <a v-if="!bet.mult_show" class="tomult" @click="showMultCtrl"><img src="../assets/images/godown_btnhdpi.png"><span>Multiple Bets</span></a>
+            <a v-if="!bet.mult_show" class="tomult" @click="showMultCtrl"><img src="../assets/images/godown_btnhdpi.png"><span>{{$t("index.multiple_bets")}}</span></a>
             <section class="multctrls"  v-if="bet.mult_show">
-              <span>Multiple Bets</span>
+              <span>{{$t("index.multiple_bets")}}</span>
               <section class="multbtns">
                 <a href="javascript:;" @click="timesHandler" data-sum="-">-</a>
                 <b>{{bet.times}}</b>
                 <a href="javascript:;" @click="timesHandler" data-sum="+">+</a>
-                <span>Times</span>
+                <span>{{$t('index.times')}}</span>
               </section>
             </section>
           </section>
         </section>
       </section>
       <section class="btn-cont">
-        <a class="btn" @click="addAnother" v-if="total">Add another ticket</a>
+        <a class="btn" @click="addAnother" v-if="total">{{$t('index.add_another_ticket')}}</a>
       </section>
       <section class="bbar">
-        <section class="msg">Total:{{all}} Ticket</section>
+        <section class="msg">{{$t('index.total_ticket',{total:all})}}</section>
         <a href="javascript:;" class="btn" :class="all?'':'disable'" @click="submit">
-          <span>Place Bet</span>
+          <span>{{$t('index.placeb_bet')}}</span>
           <span>￡E {{all*2}}.00</span>
         </a>
       </section>
@@ -128,6 +128,7 @@ import Register from './mixins/Register';
 import SideMenu from './mixins/SideMenu';
 import queryParse from './mixins/queryParse';
 import UserInfo from './mixins/UserInfo';
+import lang from '../langs/index';
 
 function factorial(n){
     return n > 1 ? n * factorial(n-1) : 1;
@@ -169,7 +170,9 @@ export default {
       termNo:0,
       lotteryTime:Date.now()/1000,
       lotteryStatus:0,
-      lotteryResult:{}
+      lotteryResult:{
+        prizeInfo:{}
+      }
     }
   },
   components: {
@@ -310,7 +313,7 @@ export default {
         if(response.status == 1){
           this.initUserInfo = response.data;
           sessionStorage.user = JSON.stringify(this.initUserInfo);
-
+          this.$i18n.locale = lang.langlist[this.initUserInfo.language-1].key;
         }else{
           this.$refs.login.showLayer();
         }
