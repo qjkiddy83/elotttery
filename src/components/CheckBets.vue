@@ -102,6 +102,7 @@ export default {
     this.termNo = this.$route.params.termNo;
     this.lotteryTime = this.$route.params.lotteryTime;
     if(!this.bets || !this.termNo || !this.lotteryTime){
+      alert('lottery error')
       this.$router.push("index");
       return;
     }

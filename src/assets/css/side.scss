@@ -24,10 +24,10 @@
 		li{
 			height: 144px;
 			line-height: 144px;
-			border-bottom: 1px solid #fff;
+			border-bottom: 2px solid #fff;
 
 			&.logined{
-				border-top: 1px solid #fff;
+				border-top: 2px solid #fff;
 				height:180px;
 				line-height: 1.5;
 				dl{
@@ -95,6 +95,17 @@
 					background: url(../../assets/images/arrow-r.png) no-repeat;
 				}
 			}
+		}
+	}
+}
+
+.no-flex{
+	.side-cont ul li.logined dl{
+		dt{
+			margin-top: 14px;
+		}
+		dd{
+			margin-top: 40px;
 		}
 	}
 }

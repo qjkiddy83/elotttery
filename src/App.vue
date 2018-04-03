@@ -1,5 +1,5 @@
 <template>
-  <div id="app" :style="'height:'+wh+'px;'">
+  <div id="app" :style="'height:'+wh+'px;'" :class="android_version>4.3?'':'no-flex'">
     <!-- <keep-alive> -->
     <router-view/>
   <!-- </keep-alive> -->
@@ -14,13 +14,24 @@ export default {
     return {
       width:0,
       height:0,
-      wh:0
+      wh:0,
+      android_version:0
     }
   },
   created:function(){
     this.width = window.innerWidth
     this.height = window.innerHeight
     this.wh = 1080*this.height/this.width
+
+    var ua = navigator.userAgent.toLowerCase();
+    var version = null;
+    if (ua.indexOf("android") > 0) {
+        var reg = /android [\d._]+/gi;
+        var v_info = ua.match(reg);
+        version = (v_info + "").replace(/[^0-9|_.]/ig, "").replace(/_/ig, "."); //得到版本号4.2.2
+        version = parseFloat(version);// 得到版本号第一位
+    }
+    this.android_version = version
   }
 }
 </script>

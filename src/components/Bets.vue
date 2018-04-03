@@ -50,9 +50,13 @@
           </dd>
           <dt v-if="record.betstatus == 2" class="win"><div><h4>You won</h4><strong>￡E {{record.win_amount}}</strong></div></dt>
 
-          <dt class="upcoming" v-if="record.betstatus != 2">
+          <dt class="upcoming" v-if="record.betstatus == 1">
             <div><h4>{{$t('bets.total_tickets',{total:all(parseBets(record.bets))})}}</h4><strong>￡E {{all(parseBets(record.bets))*2}}.00</strong></div>
-            <div v-if="record.betstatus == 1">{{$t('bets.drawing_time')}}: {{timestamp(record.lottery_time*1000)}}</div>
+            <div>{{$t('bets.drawing_time')}}: {{timestamp(record.lottery_time*1000)}}</div>
+          </dt>
+
+          <dt class="failure" v-if="record.betstatus == 3">
+            <div><h4>{{$t('bets.total_tickets',{total:all(parseBets(record.bets))})}}</h4><strong>￡E {{all(parseBets(record.bets))*2}}.00</strong></div>
           </dt>
         </dl>
       </section>
@@ -168,6 +172,7 @@ export default {
   @import "../assets/css/bets.scss"
 </style>
 <style lang="scss">
+
   .infinite-status-prompt{
     font-size:36px !important;
   }

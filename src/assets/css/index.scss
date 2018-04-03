@@ -60,6 +60,7 @@ header{
 		text-align: center;
 	}
 }
+
 .bets-selected{
 	.bet-group{
 		position: relative;
@@ -116,7 +117,8 @@ header{
 		color: #fff;
 		width: 100%;
 		display: flex;
-		border-bottom: 1px solid #fff;
+		border-bottom: 2px solid #fff;
+		margin-bottom: 2px;
 		font-weight: normal;
 		padding: 15px 0;
 		span{
@@ -300,5 +302,77 @@ header{
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%,-50%);
+	}
+}
+
+.no-flex{
+	.notice{
+		p{
+			padding: 15px 24px 24px;
+			span{
+				width: 50%;
+			}
+		}
+		.status2{
+			padding-top: 50px;
+		}
+	}
+	.balls-wrapper{
+		h2{
+			display: block;
+			width: 100%;
+			span{
+				width: 50%;
+				display: block;
+				float: left;
+				&:last-child{
+					float:right;
+				}
+			}
+			&:after{
+				display: block;
+				content: '';
+				clear: both;
+				height: 0;
+			}
+		}
+		ul{
+			clear: both;
+			overflow: hidden;
+			display: block;
+			li{
+				float: left;
+			}
+		}
+		.multctrls{
+			display: block;
+			overflow: hidden;
+			&>span{
+				float: left;
+			}
+			.multbtns{
+				float: right;
+				white-space: nowrap;
+			}
+		}
+	}
+	.bet-group{
+		.balls{
+			display: block;
+			.ball{
+				float: left;
+			}
+		}
+	}
+	.bbar{
+		padding-top: 17px;
+		.msg{
+			margin-right: 40px;
+		}
+		.btn{
+			span{
+				display: block;
+			}
+		}
 	}
 }

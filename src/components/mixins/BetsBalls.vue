@@ -52,4 +52,18 @@ export default {
   }
 }
 
+.no-flex{
+  .scroller-cont{
+    dl{
+      dd{
+        ul.balls{
+          li.ball{
+            float: left;
+          }
+        }
+      }
+    }
+  }
+}
+
 </style>
