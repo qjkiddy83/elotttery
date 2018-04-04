@@ -24,16 +24,17 @@ export default {
     this.wh = 1080*this.height/this.width
 
     var ua = navigator.userAgent.toLowerCase();
-    var version = null;
+    var _android_version = null;
     if (ua.indexOf("android") > 0) {
         var reg = /android [\d._]+/gi;
         var v_info = ua.match(reg);
-        version = (v_info + "").replace(/[^0-9|_.]/ig, "").replace(/_/ig, "."); //得到版本号4.2.2
-        version = parseFloat(version);// 得到版本号第一位
+        _android_version = (v_info + "").replace(/[^0-9|_.]/ig, "").replace(/_/ig, "."); //得到版本号4.2.2
+        _android_version = parseFloat(_android_version);// 得到版本号第一位
     }
-    this.android_version = version
+    this.android_version = _android_version
   }
 }
+// alert(navigator.userAgent);
 </script>
 
 <style lang="scss">
