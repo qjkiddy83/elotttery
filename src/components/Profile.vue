@@ -6,7 +6,7 @@
     </header>
     <section class="list">
       <ul>
-        <li><span>{{$t('profile.profile_photo')}}</span><img :src="user.avatar" width="144" height="144" class="avatar"></li>
+        <li><span>{{$t('profile.profile_photo')}}</span><img :src="user.avatar" class="avatar"></li>
         <li><span>{{$t('user.nickname')}}</span><a href="javascript:;" @click="update" data-upname="nickname">{{user.nickname}}</a></li>
         <li><span>{{$t('user.gender')}}</span><a href="javascript:;" @click="update" data-upname="gender">{{gender}}</a></li>
         <li><span>{{$t('user.date_of_birth')}}</span><a href="javascript:;" @click="update" data-upname="birthday">{{birth}}</a></li>

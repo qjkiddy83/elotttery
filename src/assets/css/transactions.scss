@@ -1,16 +1,16 @@
 .scroller-cont {
   position: absolute;
-  width: 1080px;
-  top: 144px;
+  width: 10.0rem;
+  top: 1.333333rem;
   left: 0;
   right: 0;
   bottom: 0;
   ol {
-    padding: 0 50px;
+    padding: 0 0.462963rem;
     li {
       color: #fff;
-      font-size: 36px;
-      line-height: 88px;
+      font-size: 0.333333rem;
+      line-height: 0.814815rem;
       border-bottom: 2px solid #fff;
       p {
         display: flex;
@@ -21,12 +21,12 @@
 }
 
 .article {
-  padding: 375px 72px 0;
+  padding: 3.472222rem 0.666667rem 0;
   p {
-    font-size: 56px;
+    font-size: 0.518519rem;
     color: #fff;
     font-weight: lighter;
-    margin-bottom: 70px;
+    margin-bottom: 0.648148rem;
   }
 }
 .no-flex{

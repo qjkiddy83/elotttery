@@ -1,25 +1,25 @@
 .mb166{
-	padding-bottom: 166px;
+	padding-bottom: 1.537037rem;
 }
 
 header{
 	position:relative;
 	background:url('../assets/images/bannerhdpi.png') no-repeat;
-	height:144px;
+	height:1.333333rem;
 	overflow: hidden;
 	img{
 		position: relative;
 		float:left;
-		width:96px;
+		width:0.888889rem;
 	}
 	h1{
 		float:right;
-		font-size:72px;
-		line-height:144px;
+		font-size:0.666667rem;
+		line-height:1.333333rem;
 		color:#fff;
-		margin-right:50px;
+		margin-right:0.462963rem;
 		em{
-			font-size:36px;
+			font-size:0.333333rem;
 			font-style:normal;
 			font-weight: normal;
 		}
@@ -27,9 +27,9 @@ header{
 }
 .notice{
 	background-color: rgb(248,182,45);
-	height: 144px;
-	font-size: 36px;
-	line-height: 36px;
+	height: 1.333333rem;
+	font-size: 0.333333rem;
+	line-height: 0.333333rem;
 	display: flex;
     width: 100%;
     flex-direction: column;
@@ -39,7 +39,7 @@ header{
 	p{
 		width: 100%;
 		display: flex;
-		padding: 0 24px;
+		padding: 0 0.222222rem;
 		align-self: flex-start;
 		span{
 			flex:1;
@@ -52,11 +52,11 @@ header{
 	strong{
 		display: block;
 		color: rgb(234,85,20);
-		padding-left: 24px;
+		padding-left: 0.222222rem;
 	}
 	.status2{
 		width: 100%;
-		font-size:48px;
+		font-size:0.444444rem;
 		text-align: center;
 	}
 }
@@ -64,32 +64,32 @@ header{
 .bets-selected{
 	.bet-group{
 		position: relative;
-		border-radius: 10px;
-		margin: 22px;
+		border-radius: 0.092593rem;
+		margin: 0.203704rem;
 		background-color: rgba(0,0,0,0.7);
-		padding: 25px;
+		padding: 0.231481rem;
 		display: flex;
 		.balls{
-			width: 700px;
+			width: 6.481481rem;
 			.ball{
-				width: 80px;
-				height: 80px;
-				line-height: 60px;
-				font-size: 36px;
-				margin:8px;
+				width: 0.740741rem;
+				height: 0.740741rem;
+				line-height: 0.555556rem;
+				font-size: 0.333333rem;
+				margin:0.074074rem;
 			}
 		}
 		.bet-info{
 			position: absolute;
-			right: 25px;
+			right: 0.231481rem;
 			top: 50%;
 			transform: translateY(-50%);
 			p{
-				margin-right: 80px;
+				margin-right: 0.740741rem;
 				text-align: right;
 				span{
 					display: block;
-					font-size: 36px;
+					font-size: 0.333333rem;
 					color: #f8b62d;
 					&:last-child{
 						color:#c7481b;
@@ -101,39 +101,39 @@ header{
 				right: 0;
 				top: 50%;
 				transform: translateY(-50%);
-				width: 48px;
-				height: 48px;
+				width: 0.444444rem;
+				height: 0.444444rem;
 			}
 		}
 	}
 }
 .balls-wrapper{
-	margin: 22px;
-	padding: 25px;
+	margin: 0.203704rem;
+	padding: 0.231481rem;
 	background-color: rgba(0,0,0,0.5);
-	border-radius: 10px;
+	border-radius: 0.092593rem;
 	h2{
-		font-size: 48px;
+		font-size: 0.444444rem;
 		color: #fff;
 		width: 100%;
 		display: flex;
 		border-bottom: 2px solid #fff;
 		margin-bottom: 2px;
 		font-weight: normal;
-		padding: 15px 0;
+		padding: 0.138889rem 0;
 		span{
 			vertical-align: middle;
 			flex: 1;
-			line-height: 48px;
+			line-height: 0.444444rem;
 			&:first-child:after{
 				content:'';
-				width: 48px;
-				height: 48px;
+				width: 0.444444rem;
+				height: 0.444444rem;
 				display: inline-block;
 				background-color: #e60012;
 				vertical-align: middle;
-				border-radius: 48px;
-				margin-left: 24px;
+				border-radius: 0.444444rem;
+				margin-left: 0.222222rem;
 			}
 			&.blue:first-child:after{
 				background-color: #036eb8;
@@ -145,22 +145,22 @@ header{
 	}
 	
 	.mult{
-		padding:45px 0 35px;
+		padding:0.416667rem 0 0.324074rem;
 		.tomult{
 			display: flex;
 			justify-content: center;
 			text-decoration: none;
 			&>*{
-				font-size: 48px;
-				line-height: 48px;
+				font-size: 0.444444rem;
+				line-height: 0.444444rem;
 				color: rgb(284,182,45);
 				display: inline-block;
 				vertical-align: middle;
 			}
 			img{
-				width: 48px;
-				height: 48px;
-				margin-right: 25px;
+				width: 0.444444rem;
+				height: 0.444444rem;
+				margin-right: 0.231481rem;
 			}
 		}
 		.multctrls{
@@ -171,23 +171,23 @@ header{
 			span{
 				flex: 1;
 				color: rgb(248,182,45);
-				font-size: 48px;
-				line-height: 96px;
+				font-size: 0.444444rem;
+				line-height: 0.888889rem;
 			}
 			.multbtns{
 				align-self: flex-end;
 				a,b{
 					display: inline-block;
-					width: 96px;
-					height: 96px;
+					width: 0.888889rem;
+					height: 0.888889rem;
 					background-color: rgb(248,182,45);
-					font-size: 48px;
+					font-size: 0.444444rem;
 					text-align: center;
-					line-height: 96px;
+					line-height: 0.888889rem;
 					color: #000;
 					font-weight: bolder;
-					border-radius: 10px;
-					margin-right: 25px;
+					border-radius: 0.092593rem;
+					margin-right: 0.231481rem;
 				}
 				b{
 					background: #fff;
@@ -198,38 +198,38 @@ header{
 }
 
 .prize-wrapper{
-	margin: 22px;
+	margin: 0.203704rem;
 	h2{
-		font-size: 48px;
+		font-size: 0.444444rem;
 		color: #fff;
 		width: 100%;
 		display: flex;
 		font-weight: normal;
-		padding: 15px 25px;
+		padding: 0.138889rem 0.231481rem;
 		span{
 			vertical-align: middle;
-			line-height: 48px;
+			line-height: 0.444444rem;
 		}
 	}
 	.box{
 		background-color: #fff;
-		border-radius: 10px;
-		padding: 15px 20px;
+		border-radius: 0.092593rem;
+		padding: 0.138889rem 0.185185rem;
 		dl{
-			line-height: 144px;
+			line-height: 1.333333rem;
 			display: flex;
 			flex-direction: row;
-			font-size: 48px;
-			border-bottom: 1px solid #c8c8c8;
+			font-size: 0.444444rem;
+			border-bottom: 2px solid #c8c8c8;
 			dt{
-				width: 250px;
+				width: 2.314815rem;
 				text-align: center;
 				font-weight: bolder;
-				border-right: 1px solid #c8c8c8;
+				border-right: 2px solid #c8c8c8;
 			}
 			dd{
 				font-weight: lighter;
-				padding-left: 20px;
+				padding-left: 0.185185rem;
 			}
 			&:last-child{
 				border-bottom: 0;
@@ -237,11 +237,11 @@ header{
 		}
 	}
 	.tip{
-		font-size: 48px;
-		line-height: 72px;
+		font-size: 0.444444rem;
+		line-height: 0.666667rem;
 		text-align: center;
 		color: #f5b72b;
-		margin-top: 50px;
+		margin-top: 0.462963rem;
 	}
 }
 
@@ -249,41 +249,41 @@ header{
 	position: fixed;
 	left: 0;
 	bottom: 0;
-	height: 144px;
-	width: 1080px;
+	height: 1.333333rem;
+	width: 10.0rem;
 	z-index: 10;
-	padding: 0 45px;
+	padding: 0 0.416667rem;
 	display: flex;
 	flex-direction: row;
 	background-color: #000;
 	justify-content: space-around;
 	.msg{
-		width: 580px;
+		width: 5.37037rem;
 		background-color: #fff;
-		padding: 0 35px;
-		font-size: 48px;
-		line-height: 110px;
-		height: 110px;
+		padding: 0 0.324074rem;
+		font-size: 0.444444rem;
+		line-height: 1.018519rem;
+		height: 1.018519rem;
 		align-self: center;
-		border-radius: 10px;
+		border-radius: 0.092593rem;
 	}
 	.btn{
-		width: 360px;
-		min-width:360px;
-		height: 110px;
-		padding: 10px 0;
+		width: 3.333333rem;
+		min-width:3.333333rem;
+		height: 1.018519rem;
+		padding: 0.092593rem 0;
 		align-self: center;
 		display: flex;
 		flex-direction: column;
 		text-align: center;
 		justify-content: space-around;
 		span:first-child{
-			font-size:36px;
+			font-size:0.333333rem;
 			color: #000;
 			font-weight: bolder;
 		}
 		span:last-child{
-			font-size: 48px;
+			font-size: 0.444444rem;
 			color: #e83828;
 		}
 	}
@@ -308,13 +308,13 @@ header{
 .no-flex{
 	.notice{
 		p{
-			padding: 15px 24px 24px;
+			padding: 0.138889rem 0.222222rem 0.222222rem;
 			span{
 				width: 50%;
 			}
 		}
 		.status2{
-			padding-top: 50px;
+			padding-top: 0.462963rem;
 		}
 	}
 	.balls-wrapper{
@@ -365,9 +365,9 @@ header{
 		}
 	}
 	.bbar{
-		padding-top: 17px;
+		padding-top: 0.157407rem;
 		.msg{
-			margin-right: 40px;
+			margin-right: 0.37037rem;
 		}
 		.btn{
 			span{

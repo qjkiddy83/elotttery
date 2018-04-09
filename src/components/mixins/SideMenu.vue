@@ -2,7 +2,7 @@
   <section class="layer" v-if="sideshow" @click="hideMenu">
     <section class="side-cont" @click.stop>
       <section class="profile">
-        <img :src="user.avatar?user.avatar:require('../../assets/images/nopic_iconhdpi.png')" width="295" height="295">
+        <img :src="user.avatar?user.avatar:require('../../assets/images/nopic_iconhdpi.png')" width="39.4%">
         <h3>{{user.id_number?user.nickname:'Unregistered User'}}</h3>
         <section v-if="!user.id_number">
           <a href="javascript:;" class="btn" @click="login">{{$t('sidemenu.login')}}</a>

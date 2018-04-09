@@ -102,7 +102,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
   .content{
-    height: 500px;
+    height: 4.62963rem;
     text-align: center;
   }
 </style>

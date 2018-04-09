@@ -1,25 +1,25 @@
 .list{
-	padding: 0 36px;
+	padding: 0 0.333333rem;
 	ul{
-		margin-top: 56px;
+		margin-top: 0.518519rem;
 		li{
-			padding: 0 20px;
-			height: 144px;
-			line-height: 144px;
-			border-bottom: 1px solid #fff;
+			padding: 0 0.185185rem;
+			height: 1.333333rem;
+			line-height: 1.333333rem;
+			border-bottom: 2px solid #fff;
 			display:flex;
 			flex-direction: row;
 			justify-content: space-between;
 			span{
 
-				font-size: 48px;
+				font-size: 0.444444rem;
 				color: #fff;
 				display: block;
 				font-weight: lighter;
 			}
 			a,i{
 				font-style: normal;
-				font-size: 48px;
+				font-size: 0.444444rem;
 				font-weight: lighter;
 				color: rgb(248,182,45);
 			}
@@ -31,7 +31,8 @@
 			}
 			.avatar{
 				position: relative;
-				top: -30px;
+				top: -0.277778rem;
+				width:1.333333rem;
 			}
 		}
 	}

@@ -1,5 +1,6 @@
 <template>
-  <div id="app" :style="'height:'+wh+'px;'" :class="android_version>4.3?'':'no-flex'">
+  <!-- <div id="app" :style="'height:'+wh+'px;'" :class="android_version>4.3?'':'no-flex'"> -->
+  <div id="app" :style="'height:'+wh+'rem;'" :class="android_version>4.3?'':'no-flex'">
     <!-- <keep-alive> -->
     <router-view/>
   <!-- </keep-alive> -->
@@ -8,6 +9,8 @@
 </template>
 
 <script>
+import './lib/flexible.js';
+
 export default {
   name: 'App',
   data () {
@@ -15,13 +18,13 @@ export default {
       width:0,
       height:0,
       wh:0,
-      android_version:0
+      android_version:5
     }
   },
   created:function(){
     this.width = window.innerWidth
     this.height = window.innerHeight
-    this.wh = 1080*this.height/this.width
+    this.wh = 10*this.height/this.width
 
     var ua = navigator.userAgent.toLowerCase();
     var _android_version = null;
@@ -31,7 +34,9 @@ export default {
         _android_version = (v_info + "").replace(/[^0-9|_.]/ig, "").replace(/_/ig, "."); //得到版本号4.2.2
         _android_version = parseFloat(_android_version);// 得到版本号第一位
     }
-    this.android_version = _android_version
+    if(_android_version){
+      this.android_version = _android_version;
+    }
   }
 }
 // alert(navigator.userAgent);
@@ -48,7 +53,7 @@ export default {
     color:#fff;
   }
   #app{
-    width:1080px;
+    width:10rem;
     // overflow-x:hidden;
     // transform:scale(0.5925);
     // transform-origin: 0 0;

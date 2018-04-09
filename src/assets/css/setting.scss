@@ -1,14 +1,14 @@
 .wrapper {
-  padding-top: 72px;
+  padding-top: 0.666667rem;
   .card {
-    width: 920px;
+    width: 8.518519rem;
     background-color: #fff;
-    margin: 0 auto 10px;
+    margin: 0 auto 0.092593rem;
     li {
-      height: 144px;
-      line-height: 144px;
-      font-size: 48px;
-      padding: 0 35px;
+      height: 1.333333rem;
+      line-height: 1.333333rem;
+      font-size: 0.444444rem;
+      padding: 0 0.324074rem;
       font-weight: lighter;
       display: flex;
       flex-direction: row;
@@ -22,7 +22,7 @@
       em {
         display: inline-block;
         color: #f8b62d;
-        font-size: 48px;
+        font-size: 0.444444rem;
         font-weight: lighter;
         font-style: normal;
         text-align: right;
@@ -31,18 +31,18 @@
         background-color: #fff;
       }
       option {
-        font-size: 48px;
+        font-size: 0.444444rem;
       }
       .swither {
         position: relative;
         align-self: center;
         display: block;
-        width: 97px;
-        height: 97px;
+        width: 0.898148rem;
+        height: 0.898148rem;
         i {
           display: inline-block;
-          width: 97px;
-          height: 97px;
+          width: 0.898148rem;
+          height: 0.898148rem;
           background: url(../assets/images/enable_btn_downhdpi.png) no-repeat;
           background-size: cover;
         }
@@ -51,17 +51,18 @@
           left: 0;
           top: 0;
           opacity: 0;
-          width: 97px;
-          height: 97px;
+          width: 0.898148rem;
+          height: 0.898148rem;
           &:checked+i {
             background: url(../assets/images/enable_btn_norhdpi.png) no-repeat;
+            background-size: cover;
           }
         }
       }
     }
   }
   .btn-cont {
-    margin-top: 155px;
+    margin-top: 1.435185rem;
     .btn {
       color: #ea5514;
     }
@@ -80,10 +81,10 @@
       float:right;
     }
     select{
-      margin-top: 44px;
+      margin-top: 0.407407rem;
     }
     a{
-      margin-top: 24px;
+      margin-top: 0.222222rem;
     }
   }
 }

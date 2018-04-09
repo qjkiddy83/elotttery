@@ -33,26 +33,26 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
   .article{
-    padding:75px 50px 0;
+    padding:0.694444rem 0.462963rem 0;
     p{
-      font-size:36px;
-      line-height:72px;
+      font-size:0.333333rem;
+      line-height:0.666667rem;
       color:#fff;
       font-weight:lighter;
-      margin-bottom:70px;
+      margin-bottom:0.648148rem;
     }
     dl{
-      margin:0 10px;
-      padding:0 30px;
+      margin:0 0.092593rem;
+      padding:0 0.277778rem;
       background-color:rgb(247,183,44);
       dt{
-        font-size:36px;
-        border-bottom:1px solid rgb(141,104,33);
-        line-height:100px;
+        font-size:0.333333rem;
+        border-bottom:2px solid rgb(141,104,33);
+        line-height:0.925926rem;
       }
       dd{
-        font-size:72px;
-        line-height:130px;
+        font-size:0.666667rem;
+        line-height:1.203704rem;
       }
     }
   }

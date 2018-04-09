@@ -173,11 +173,11 @@ export default {
 </style>
 <style lang="scss">
 
-  .infinite-status-prompt{
-    font-size:36px !important;
-  }
-  .infinite-loading-container [class^=loading-]{
-    margin-top:20px !important;
-    transform:scale(1.5);
-  }
+  // .infinite-status-prompt{
+  //   font-size:36px !important;
+  // }
+  // .infinite-loading-container [class^=loading-]{
+  //   margin-top:20px !important;
+  //   transform:scale(1.5);
+  // }
 </style>

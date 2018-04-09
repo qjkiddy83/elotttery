@@ -157,14 +157,14 @@ export default {
 </style>
 <style lang="scss" scoped>
   .content{
-    height: 1174px;
+    height: 10.87037rem;
     text-align: center;
     .agreetip{
       position:absolute;
-      bottom:-150px;
+      bottom:-1.388889rem;
       color:#fff;
-      font-size:36px;
-      line-height:48px;
+      font-size:0.333333rem;
+      line-height:0.444444rem;
       a{
         text-decoration: underline;
         color:#fff;

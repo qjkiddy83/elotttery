@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <header>
-      <img :src="initUserInfo.avatar?initUserInfo.avatar:require('../assets/images/profile_btnhdpi.png')" @click="showMenu" width="96" height="96">
+      <img :src="initUserInfo.avatar?initUserInfo.avatar:require('../assets/images/profile_btnhdpi.png')" @click="showMenu" width="8.89%">
       <h1>{{$t("index.title")}} <em>{{$t("index.subhead")}}</em></h1>
     </header>
     <!-- 等待开奖 -->
