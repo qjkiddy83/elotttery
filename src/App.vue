@@ -35,6 +35,8 @@ export default {
   }
 }
 // alert(navigator.userAgent);
+
+
 </script>
 
 <style lang="scss">
@@ -47,7 +49,7 @@ export default {
   }
   #app{
     width:1080px;
-    overflow-x:hidden;
+    // overflow-x:hidden;
     // transform:scale(0.5925);
     // transform-origin: 0 0;
   }

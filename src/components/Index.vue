@@ -324,7 +324,7 @@ export default {
           sessionStorage.user = JSON.stringify(this.initUserInfo);
           this.$i18n.locale = lang.langlist[this.initUserInfo.language-1].key;
         }else{
-          this.$refs.login.showLayer();
+          // this.$refs.login.showLayer();
         }
         this.loading = false;
         // console.log(response)

@@ -160,8 +160,8 @@ header{
 						width: 100%;
 						height: 96px;
 						font-size: 46px;
-						background-color: #dcdddd;
-						border:1px solid #9fa0a0;
+						/*background-color: #dcdddd;*/
+						border:2px solid rgb(125,51,143);
 						padding:0 15px;
 					}
 					.radio{
@@ -241,6 +241,18 @@ header{
 						background:url(./assets/images/36_iconhdpi-1.png) no-repeat;
 					}
 				}
+			}
+		}
+	}
+}
+
+.no-flex{
+	.layer{
+		form dl dd{
+			display: block;
+			overflow: hidden;
+			&>*{
+				float:left;
 			}
 		}
 	}
