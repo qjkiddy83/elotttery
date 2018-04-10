@@ -15,9 +15,16 @@
       justify-content: space-between;
       white-space: nowrap;
       &:first-child {
-        border-bottom: 2px solid rgb(181, 181, 182);
+        border-bottom: 1px solid rgb(181, 181, 182);
       }
-      a,
+      a{
+        flex:1;
+        
+        color:#000;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+      }
       select,
       em {
         display: inline-block;
@@ -75,13 +82,18 @@
     span{
       float:left;
     }
-    a,
     select,
     em{
       float:right;
     }
     select{
       margin-top: 0.407407rem;
+    }
+    .download{
+      display:block;
+      overflow:hidden;
+      margin-top:0;
+      height: 1.333333rem;
     }
     a{
       margin-top: 0.222222rem;

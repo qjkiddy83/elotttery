@@ -1,29 +1,29 @@
 .content{
 	h2{
-		height:161px;
-		font-size:56px;
-		text-indent:52px;
+		height:1.490741rem;
+		font-size:0.518519rem;
+		text-indent:0.481481rem;
 		color:#fff;
-		line-height:161px;
+		line-height:1.490741rem;
 	}
 	.cont-wrapper{
 		background:#fff;
-		border-radius: 10px;
-		margin:0 22px;
-		padding: 0 20px;
+		border-radius: 0.092593rem;
+		margin:0 0.203704rem;
+		padding: 0 0.185185rem;
 		li{
-			height: 144px;
+			height: 1.333333rem;
 			display: flex;
 			flex-direction: row;
 			justify-content: space-between;
-			font-size: 48px;
-			padding: 0 30px;
+			font-size: 0.444444rem;
+			padding: 0 0.277778rem;
 			border-bottom: 1px solid #dadada;
 			&.total{
 				border-bottom: 0;
 				label{
 					font-weight: bolder;
-					font-size: 56px;
+					font-size: 0.518519rem;
 				}
 				p{
 					font-weight: bolder;
@@ -31,35 +31,35 @@
 				}
 			}
 			label{
-				line-height: 144px;
+				line-height: 1.333333rem;
 			}
 			p{
 				font-weight:lighter;
-				line-height: 144px;
+				line-height: 1.333333rem;
 			}
 		}
 	}
 	.result-wrapper{
 		p{
-			font-size: 48px;
+			font-size: 0.444444rem;
 			color: #fff;
 			font-weight: lighter;
-			padding: 15px 60px;
-			line-height: 70px;
+			padding: 0.138889rem 0.555556rem;
+			line-height: 0.648148rem;
 		}
 		i{
-			font-size: 48px;
+			font-size: 0.444444rem;
 			font-weight: bolder;
 			display: block;
 			text-align: center;
 			color: #fff;
-			margin: 60px 0 0;
+			margin: 0.555556rem 0 0;
 		}
 	}
 	.btn-cont{
-		margin-top: 127px;
+		margin-top: 1.175926rem;
 		.btn{
-			margin-bottom: 74px;
+			margin-bottom: 0.685185rem;
 			color:#ea5514;
 			&.disable{
 				color:#fff;

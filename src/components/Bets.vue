@@ -18,7 +18,7 @@
           <dd v-for="pbets in parseBets(record.bets)">
             <bets-balls :balls="pbets"></bets-balls>
             <section class="bet-info">
-              <p><span>￡E {{pbets.count*2}}.00</span><span>x{{pbets.count}}</span></p>
+              <p><span>￡E {{singletotal(pbets)*2}}.00</span><span>x{{pbets.count}}</span></p>
             </section>
           </dd>
           <dt class="upcoming">
@@ -33,7 +33,7 @@
           <dd v-for="pbets in parseBets(record.bets)">
             <bets-balls :balls="pbets"></bets-balls>
             <section class="bet-info">
-              <p><span>￡E {{pbets.count*2}}.00</span><span>x{{pbets.count}}</span></p>
+              <p><span>￡E {{singletotal(pbets)*2}}.00</span><span>x{{pbets.count}}</span></p>
             </section>
           </dd>
           <dt class="win"><div><h4>You won</h4><strong>￡E {{record.win_amount}}</strong></div></dt>
@@ -45,7 +45,7 @@
           <dd v-for="pbets in parseBets(record.bets)">
             <bets-balls :balls="pbets"></bets-balls>
             <section class="bet-info">
-              <p><span>￡E {{pbets.count*2}}.00</span><span>x{{pbets.count}}</span></p>
+              <p><span>￡E {{singletotal(pbets)*2}}.00</span><span>x{{pbets.count}}</span></p>
             </section>
           </dd>
           <dt v-if="record.betstatus == 2" class="win"><div><h4>You won</h4><strong>￡E {{record.win_amount}}</strong></div></dt>
@@ -133,6 +133,10 @@ export default {
       })
       return all;
     },
+    singletotal : function(curbet){
+      let total =  parseInt((factorial(curbet.red.length)*curbet.blue.length)/(factorial(6)*factorial(curbet.red.length-6)));
+      return total;
+    },
     total : function(curbet){
       let total =  parseInt((factorial(curbet.red.length)*curbet.blue.length)/(factorial(6)*factorial(curbet.red.length-6)))*curbet.count;
       return total;
@@ -170,14 +174,4 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
   @import "../assets/css/bets.scss"
-</style>
-<style lang="scss">
-
-  // .infinite-status-prompt{
-  //   font-size:36px !important;
-  // }
-  // .infinite-loading-container [class^=loading-]{
-  //   margin-top:20px !important;
-  //   transform:scale(1.5);
-  // }
 </style>

@@ -281,13 +281,13 @@ export default {
     all:function(){
       let all = 0;
       this.bets.forEach(item =>{
-        all += item.total
+        all += item.total*item.times
       })
       return all;
     },
     total : function(){
       let curbet = this.bets[this.curBet];
-      let total =  parseInt((factorial(curbet.select_red)*curbet.select_blue)/(factorial(6)*factorial(curbet.select_red-6)))*curbet.times;
+      let total =  parseInt((factorial(curbet.select_red)*curbet.select_blue)/(factorial(6)*factorial(curbet.select_red-6)));
       this.bets[this.curBet].total = total;
       return total;
     },

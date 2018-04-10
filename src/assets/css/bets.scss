@@ -10,8 +10,8 @@
       text-align: center;
       font-size: 0.444444rem;
       &:nth-child(2){
-      	border-left: 2px solid #000;
-        border-right: 2px solid #000;
+      	border-left: 1px solid #000;
+        border-right: 1px solid #000;
       }
       &.active {
         
@@ -112,7 +112,7 @@
 	  dd{
 	  	position: relative;
 	  	margin: 0 0.277778rem;
-	  	border-bottom: 2px solid #898989;
+	  	border-bottom: 1px solid #898989;
 	  	ul{
 	  		width: 6.944444rem;
 	  		padding: 0.185185rem 0;

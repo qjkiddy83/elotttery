@@ -7,13 +7,13 @@
     <section class="wrapper">
       <section class="card">
         <ul>
-          <li><span>{{$t("settings.enable_notification")}}</span><a class="swither"><input type="checkbox" name="notification" v-model="notification"><i></i></a></li>
+          <li><span>{{$t("settings.enable_notification")}}</span><em class="swither"><input type="checkbox" name="notification" v-model="notification"><i></i></em></li>
           <li><span>{{$t("settings.language")}}</span><select v-model="language" dir="rtl"><option v-for="lang in langlist" :value="lang.value">{{lang.name}}</option></select></li>
         </ul>
       </section>
       <section class="card">
         <ul>
-          <li><span>{{$t("settings.app_version")}}</span><em>3.14.15.926</em></li>
+          <li><a class="download" href="http://www.jsers.cn/demo/app-20180410.apk" download="app-20180410.apk"><span>{{$t("settings.app_version")}}</span><em>{{versionName}}</em></a></li>
           <li><span>{{$t("settings.about")}}</span></li>
         </ul>
       </section>
@@ -40,7 +40,8 @@ export default {
       user:{},
       notification:0,
       language:0,
-      langlist : lang.langlist
+      langlist : lang.langlist,
+      versionName: '1.0.0'
     }
   },
   mounted:function(){
@@ -48,6 +49,15 @@ export default {
     this.user = user;
     this.notification = user.notification%2;
     this.language = user.language
+
+    let arrVersionName = navigator.userAgent.match(/lotteryVersionName:(.*)(?:;|$)/);
+    let arrVersionCode = navigator.userAgent.match(/lotteryVersion:(.*)(?:;|$)/);
+    if(arrVersionName){
+      this.versionName = arrVersionName[1];
+    }
+    if(arrVersionCode){
+      this.versionCode = arrVersionCode[1];
+    }
   },
   // computed:{
   //   lang:{

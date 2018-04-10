@@ -34,7 +34,7 @@ export default {
     dd{
       position: relative;
       margin: 0 0.277778rem;
-      border-bottom: 2px solid #898989;
+      border-bottom: 1px solid #898989;
       ul{
         width: 6.944444rem;
         padding: 0.185185rem 0;
