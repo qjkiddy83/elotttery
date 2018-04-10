@@ -57,6 +57,7 @@ export default {
         ul.balls{
           li.ball{
             float: left;
+            line-height: 0.55rem;
           }
         }
       }
