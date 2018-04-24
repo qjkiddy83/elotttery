@@ -1,5 +1,7 @@
 module.exports = {
 	nomore:'There is no more records :(',
+  mustupdate:'You mast update app to use!',
+  mayupdate:'There is a new app version to use,do you want update it?',
 	transctions_type:{
 		// 1 deposit 存款； 2 bet 下注；3 wining 中奖； 4  Withdrawal 取款
 		deposit:'Deposit',

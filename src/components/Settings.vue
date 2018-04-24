@@ -50,8 +50,8 @@ export default {
     this.notification = user.notification%2;
     this.language = user.language
 
-    let arrVersionName = navigator.userAgent.match(/lotteryVersionName:(.*)(?:;|$)/);
-    let arrVersionCode = navigator.userAgent.match(/lotteryVersion:(.*)(?:;|$)/);
+    let arrVersionName = navigator.userAgent.match(/lotteryVersionName:(.*?)(?:;|$)/);
+    let arrVersionCode = navigator.userAgent.match(/lotteryVersion:(.*?)(?:;|$)/);
     if(arrVersionName){
       this.versionName = arrVersionName[1];
     }
